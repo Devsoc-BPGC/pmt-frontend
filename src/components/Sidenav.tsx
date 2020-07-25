@@ -12,6 +12,8 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import EventNoteIcon from '@material-ui/icons/EventNote';
+import { grey } from '@material-ui/core/colors';
+// import { MouseEvent } from 'react';
 
 const drawerWidth = 240;
 
@@ -51,11 +53,83 @@ const useStyles = makeStyles((theme: Theme) =>
     deadline: {
       overflowY: 'scroll',
     },
+    deadline1: {
+      overflowY: 'scroll',
+      maxHeight: 200,
+    },
+    tb: {
+      backgroundColor: '#A4A4A4',
+      padding: theme.spacing(2),
+    },
   })
 );
 
-const Sidenav = () => {
+type Pagetype = {
+  page: string;
+};
+const deadlines = [
+  {
+    date: 24,
+    text: 'Complete Wireframe',
+  },
+  {
+    date: 25,
+    text: 'Complete Wireframe',
+  },
+  {
+    date: 26,
+    text: 'Complete Wireframe',
+  },
+  {
+    date: 27,
+    text: 'Complete Wireframe',
+  },
+  {
+    date: 28,
+    text: 'Complete Wireframe',
+  },
+  {
+    date: 29,
+    text: 'Complete Wireframe',
+  },
+];
+const taskboards = [
+  {
+    name: 'TaskBoard 1',
+  },
+  {
+    name: 'TaskBoard 2',
+  },
+  {
+    name: 'TaskBoard 3',
+  },
+  {
+    name: 'TaskBoard 4',
+  },
+  {
+    name: 'TaskBoard 5',
+  },
+  {
+    name: 'TaskBoard 6',
+  },
+  {
+    name: 'TaskBoard 7',
+  },
+  {
+    name: 'TaskBoard 8',
+  },
+  {
+    name: 'TaskBoard 9',
+  },
+];
+
+const Sidenav = ({ page }: Pagetype) => {
   const classes = useStyles();
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleListItemClick = (event: MouseEvent, index: Number) => {
+    setSelectedIndex(index);
+  };
 
   return (
     <React.Fragment>
@@ -67,10 +141,40 @@ const Sidenav = () => {
         }}
         anchor='left'
       >
-        <div className={classes.toolbar}>
-          <Avatar className={classes.large}>R</Avatar>
-          <Typography paragraph>John Doe</Typography>
-        </div>
+        {page === 'Home' ? (
+          <div className={classes.toolbar}>
+            <Avatar className={classes.large}>R</Avatar>
+            <Typography paragraph>John Doe</Typography>
+          </div>
+        ) : (
+          <div>
+            <Typography variant='h5' className={classes.tb}>
+              TaskBoards
+            </Typography>
+
+            <List
+              className={classes.deadline1}
+              component='nav'
+              aria-label='Taskboard menu'
+            >
+              {taskboards.map((taskboard, i) => {
+                return (
+                  <ListItem
+                    button
+                    selected={selectedIndex === i}
+                    onClick={(event: MouseEvent) =>
+                      handleListItemClick(event, i)
+                    }
+                  >
+                    <ListItemText primary={taskboard.name} />
+                  </ListItem>
+                );
+              })}
+              
+            </List>
+          </div>
+        )}
+
         <Divider />
         <List>
           <ListItem button>
@@ -103,30 +207,17 @@ const Sidenav = () => {
           <ListItem>
             <Typography heading>Upcoming Deadlines</Typography>
           </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar>24</Avatar>
-            </ListItemIcon>
-            <ListItemText primary='Complete Wireframes' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar>24</Avatar>
-            </ListItemIcon>
-            <ListItemText primary='Complete Wireframes' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar>24</Avatar>
-            </ListItemIcon>
-            <ListItemText primary='Complete Wireframes' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar>24</Avatar>
-            </ListItemIcon>
-            <ListItemText primary='Complete Wireframes' />
-          </ListItem>
+
+          {deadlines.map((deadline, index) => {
+            return (
+              <ListItem key={index} button>
+                <ListItemIcon>
+                  <Avatar>{deadline.date}</Avatar>
+                </ListItemIcon>
+                <ListItemText primary={deadline.text} />
+              </ListItem>
+            );
+          })}
         </List>
       </Drawer>
     </React.Fragment>

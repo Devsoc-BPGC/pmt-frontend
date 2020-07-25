@@ -42,16 +42,29 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Sidenav = () => {
+type Pagetype = {
+  page: string,
+  index: string,
+  
+}
+
+const Topnav = ({page,index} : Pagetype) => {
   const classes = useStyles();
 
   return (
     <React.Fragment>
       <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
-          <Typography variant='h6' noWrap>
-            DASHBOARD
-          </Typography>
+          {page === 'Home' ? (
+            <Typography variant='h6' noWrap>
+              DASHBOARD
+            </Typography>
+          ) : (
+            <Typography variant='h6' noWrap>
+              TASKBOARD {index}
+            </Typography>
+          )}
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label='show 17 new notifications' color='inherit'>
@@ -69,4 +82,4 @@ const Sidenav = () => {
   );
 };
 
-export default Sidenav;
+export default Topnav;

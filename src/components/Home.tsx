@@ -37,8 +37,8 @@ const Home = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Topnav />
-      <Sidenav />
+      <Topnav page='Home' index='1' />
+      <Sidenav page='Home' />
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Typography paragraph>
