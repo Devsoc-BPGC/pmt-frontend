@@ -12,7 +12,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import EventNoteIcon from '@material-ui/icons/EventNote';
-import { grey } from '@material-ui/core/colors';
+
 // import { MouseEvent } from 'react';
 
 const drawerWidth = 240;
@@ -69,26 +69,32 @@ type Pagetype = {
 };
 const deadlines = [
   {
+    id: 0,
     date: 24,
     text: 'Complete Wireframe',
   },
   {
+    id: 1,
     date: 25,
     text: 'Complete Wireframe',
   },
   {
+    id: 2,
     date: 26,
     text: 'Complete Wireframe',
   },
   {
+    id: 3,
     date: 27,
     text: 'Complete Wireframe',
   },
   {
+    id: 4,
     date: 28,
     text: 'Complete Wireframe',
   },
   {
+    id: 5,
     date: 29,
     text: 'Complete Wireframe',
   },
@@ -132,7 +138,7 @@ const Sidenav = ({ page }: Pagetype) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Drawer
         className={classes.drawer}
         variant='permanent'
@@ -170,7 +176,6 @@ const Sidenav = ({ page }: Pagetype) => {
                   </ListItem>
                 );
               })}
-              
             </List>
           </div>
         )}
@@ -208,9 +213,9 @@ const Sidenav = ({ page }: Pagetype) => {
             <Typography heading>Upcoming Deadlines</Typography>
           </ListItem>
 
-          {deadlines.map((deadline, index) => {
+          {deadlines.map(deadline => {
             return (
-              <ListItem key={index} button>
+              <ListItem key={deadline.id} button>
                 <ListItemIcon>
                   <Avatar>{deadline.date}</Avatar>
                 </ListItemIcon>
@@ -220,7 +225,7 @@ const Sidenav = ({ page }: Pagetype) => {
           })}
         </List>
       </Drawer>
-    </React.Fragment>
+    </>
   );
 };
 

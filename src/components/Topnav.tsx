@@ -43,16 +43,15 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Pagetype = {
-  page: string,
-  index: string,
-  
-}
+  page: string;
+  index: string;
+};
 
-const Topnav = ({page,index} : Pagetype) => {
+const Topnav = ({ page, index }: Pagetype) => {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <>
       <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
           {page === 'Home' ? (
@@ -78,7 +77,7 @@ const Topnav = ({page,index} : Pagetype) => {
           </div>
         </Toolbar>
       </AppBar>
-    </React.Fragment>
+    </>
   );
 };
 

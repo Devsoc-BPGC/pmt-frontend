@@ -7,8 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
-import { Container } from '@material-ui/core';
-import './TaskCard.css'
+import './TaskCard.css';
 
 const useStyles = makeStyles({
   root: {
@@ -42,7 +41,7 @@ const TaskCard = ({ title }: Desc) => {
       style={{ width: 'fit-container' }}
       className={classes.root}
       bgcolor='#646464'
-      id="grow"
+      id='grow'
     >
       <CardContent>
         <Typography variant='h6' component='h2'>

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 // import DropDown from './DropDown';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -51,7 +51,7 @@ const TaskBoard = () => {
   const classes = useStyles();
 
   return (
-    <Fragment>
+    <>
       <div className={classes.root}>
         <CssBaseline />
         <Topnav page='Taskb' index='1' />
@@ -205,7 +205,7 @@ const TaskBoard = () => {
           </Container>
         </main>
       </div>
-    </Fragment>
+    </>
   );
 };
 
