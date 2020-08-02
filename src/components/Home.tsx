@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Sidenav from './Sidenav';
 import Topnav from './Topnav';
+import DashboardIssueCard from './DashboardIssueCard';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,6 +42,7 @@ const Home = () => {
       <Sidenav page='Home' />
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <DashboardIssueCard page='Home' title="@SameshGSOC assigned you issue #19"/>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
