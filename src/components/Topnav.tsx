@@ -5,8 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+// import NotificationsIcon from '@material-ui/icons/Notifications';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import NotifPanel from './NotifPanel';
 
 const drawerWidth = 240;
 
@@ -68,7 +69,7 @@ const Topnav = ({ page, index }: Pagetype) => {
           <div className={classes.sectionDesktop}>
             <IconButton aria-label='show 17 new notifications' color='inherit'>
               <Badge badgeContent={17} color='secondary'>
-                <NotificationsIcon />
+                <NotifPanel />
               </Badge>
             </IconButton>
             <IconButton color='inherit'>
