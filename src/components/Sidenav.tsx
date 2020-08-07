@@ -58,7 +58,7 @@ const Sidenav = () => {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <>
       <Drawer
         className={classes.drawer}
         variant='permanent'
@@ -129,7 +129,7 @@ const Sidenav = () => {
           </ListItem>
         </List>
       </Drawer>
-    </React.Fragment>
+    </>
   );
 };
 

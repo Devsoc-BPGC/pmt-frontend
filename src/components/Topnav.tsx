@@ -47,7 +47,7 @@ const Sidenav = () => {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <>
       <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
           <Typography variant='h6' noWrap>
@@ -66,7 +66,7 @@ const Sidenav = () => {
           </div>
         </Toolbar>
       </AppBar>
-    </React.Fragment>
+    </>
   );
 };
 

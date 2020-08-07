@@ -1,7 +1,24 @@
 {
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "extends": ["react-app", "airbnb", "prettier", "prettier/react"],
   "plugins": ["react", "prettier"],
   "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "no-console": "off",
     "react/prop-types": "off",
     "prettier/prettier": [

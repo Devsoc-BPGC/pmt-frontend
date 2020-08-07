@@ -5,7 +5,7 @@ import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuList from '@material-ui/core/MenuList';
-import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Typography from '@material-ui/core/Typography';
@@ -88,6 +88,7 @@ export default function NotifPanel() {
             placement: any;
           }) => (
             <Grow
+              // eslint-disable-next-line react/jsx-props-no-spreading
               {...TransitionProps}
               style={{
                 transformOrigin:
