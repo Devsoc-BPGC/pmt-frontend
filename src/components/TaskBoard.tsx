@@ -55,7 +55,7 @@ const TaskBoard = () => {
       <div className={classes.root}>
         <CssBaseline />
         <Topnav page='Taskb' index='1' />
-        <Sidenav page='Taskb' />
+        <Sidenav active="Dashboard" />
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Typography variant='h3'>TaskBoard</Typography>

@@ -3,7 +3,6 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -157,8 +156,11 @@ const DashboardTaskboard = ({ id }: ID) => {
         </Card>
         {projects.map((project: Project) => {
           return (
-            <div className={project.isActive ? classes.active : ''}>
-              <Card key={project.id} className={classes.project}>
+            <div
+              className={project.isActive ? classes.active : ''}
+              key={project.id}
+            >
+              <Card className={classes.project}>
                 <CardContent>
                   <Button
                     className={classes.projectbtn}
@@ -193,17 +195,19 @@ const DashboardTaskboard = ({ id }: ID) => {
             </Button>
           </CardContent>
         </Card>
-        {projects[active].taskboards.map((taskboard: Taskboard) => {
-          return (
-            <Card className={classes.taskboard}>
-              <CardContent>
-                <Button className={classes.taskboardbtn}>
-                  {taskboard.name}
-                </Button>
-              </CardContent>
-            </Card>
-          );
-        })}
+        {projects[active].taskboards.map(
+          (taskboard: Taskboard, index: number) => {
+            return (
+              <Card className={classes.taskboard} key={index}>
+                <CardContent>
+                  <Button className={classes.taskboardbtn}>
+                    {taskboard.name}
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          }
+        )}
       </div>
     </div>
   );
