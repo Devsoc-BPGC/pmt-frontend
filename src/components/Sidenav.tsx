@@ -1,134 +1,61 @@
-import React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import SettingsIcon from '@material-ui/icons/Settings';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import TimelineIcon from '@material-ui/icons/Timeline';
-import EventNoteIcon from '@material-ui/icons/EventNote';
+import React, { useState } from 'react';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { Paper, List, ListItem, ListItemText } from '@material-ui/core';
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
-    drawer: {
-      [theme.breakpoints.up('sm')]: {
-        width: drawerWidth,
-        flexShrink: 0,
-      },
-    },
-    large: {
-      width: theme.spacing(12),
-      height: theme.spacing(12),
-      marginTop: '20px',
-    },
-    drawerPaper: {
-      width: drawerWidth,
-    },
-    // necessary for content to be below app bar
-    toolbar: {
+    root: {
       display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      ...theme.mixins.toolbar,
+      height: 'max-content',
     },
-    content: {
-      flexGrow: 1,
-      backgroundColor: theme.palette.background.default,
-      padding: theme.spacing(3),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
+    sideNav: {
+      width: '250px',
+      borderRadius: '0px 36px 36px 0px',
+      boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
+      backgroundColor: '#bbe1fa',
+      padding: '1rem 0rem',
     },
-    deadline: {
-      overflowY: 'scroll',
+    sideNavLink: {
+      textAlign: 'center',
+      color: '#1b262c',
+    },
+    active: {
+      backgroundColor: '#0f4c75',
     },
   })
 );
 
-const Sidenav = () => {
+type LinkType = {
+  active: string;
+};
+
+const Sidenav = ({ active }: LinkType) => {
   const classes = useStyles();
+  const [selectedSideNavItem, setSelectedSideNavItem] = useState(active);
+
+  const handleSelectedSideNavItem = (event: any, sideNavItem: string) => {
+    setSelectedSideNavItem(sideNavItem);
+  };
 
   return (
     <>
-      <Drawer
-        className={classes.drawer}
-        variant='permanent'
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor='left'
-      >
-        <div className={classes.toolbar}>
-          <Avatar className={classes.large}>R</Avatar>
-          <Typography paragraph>John Doe</Typography>
-        </div>
-        <Divider />
-        <List>
-          <ListItem button>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary='Settings' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary='Dashboard' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <TimelineIcon />
-            </ListItemIcon>
-            <ListItemText primary='Statistics' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <EventNoteIcon />
-            </ListItemIcon>
-            <ListItemText primary='Calendar' />
-          </ListItem>
-        </List>
-        <Divider />
-        <List className={classes.deadline}>
-          <ListItem>
-            <Typography heading>Upcoming Deadlines</Typography>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar>24</Avatar>
-            </ListItemIcon>
-            <ListItemText primary='Complete Wireframes' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar>24</Avatar>
-            </ListItemIcon>
-            <ListItemText primary='Complete Wireframes' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar>24</Avatar>
-            </ListItemIcon>
-            <ListItemText primary='Complete Wireframes' />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Avatar>24</Avatar>
-            </ListItemIcon>
-            <ListItemText primary='Complete Wireframes' />
-          </ListItem>
-        </List>
-      </Drawer>
+      <div className={classes.root}>
+        <Paper elevation={3} className={classes.sideNav}>
+          <List>
+            {['Dashboard', 'Calendar', 'Profile', 'Settings'].map(text => (
+              <ListItem
+                button
+                key={text}
+                selected={selectedSideNavItem === text}
+                classes={{ selected: classes.active }}
+                onClick={(event: any) => handleSelectedSideNavItem(event, text)}
+              >
+                <ListItemText primary={text} className={classes.sideNavLink} />
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
+      </div>
     </>
   );
 };
