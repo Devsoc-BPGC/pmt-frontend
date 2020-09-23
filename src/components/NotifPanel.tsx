@@ -1,21 +1,41 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Typography from '@material-ui/core/Typography';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import IconButton from '@material-ui/core/IconButton';
+import styled from 'styled-components';
+import { Dimensions } from 'react-native';
+import './NotifPanel.css';
+import { Modal, Box, Paper } from '@material-ui/core';
 
+// const styles = require(../css/NotifPanel.css);
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const useStyles = makeStyles(theme => ({
+  shape: {
+    borderRadius: 50,
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+  notifPanelStyle: {
+    backgroundColor: '#BBE1FA',
+    padding: 0,
+    maxWidth: (25 * windowWidth) / 100,
+    maxHeight: (60 * windowHeight) / 100,
+  },
   notifHead: {
     ...theme.typography.button,
-    backgroundColor: theme.palette.primary.main,
-    // color : white,
     padding: theme.spacing(),
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: '#0F4C75',
+    color: '#BBE1FA',
   },
   root: {
     '& > *': {
@@ -23,172 +43,237 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
-
+const Styledbutton1 = styled(Button)`
+  background-color: #0f4c75;
+  color: #ffffff;
+`;
+const Styledbutton2 = styled(Button)`
+  background-color: #ffffff;
+  color: #000000;
+`;
 export default function NotifPanel() {
+  const buttonClassStyle = {
+    display: 'flex',
+    justifyContent: 'space-around',
+    margin: 0,
+    paddingBottom: 10,
+  };
+  /// /////////////////////////
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-
-  const handleToggle = () => {
-    setOpen((prevOpen: any) => !prevOpen);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event: { currentTarget: any }) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(!open);
   };
 
-  const handleClose = (event: { target: any }) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
+  const handleClose = () => {
+    setAnchorEl(null);
     setOpen(false);
   };
 
-  function handleListKeyDown(event: {
-    key: string;
-    preventDefault: () => void;
-  }) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
+  function NotifContent() {
+    return (
+      <div
+        style={{
+          backgroundColor: '#BBE1FA',
+          overflowY: 'scroll',
+        }}
+        className={classes.notifPanelStyle}
+      >
+        <div>
+          <div className={classes.root}>
+            <Typography variant='body1' align='center'>
+              XYZ wants to join project 1
+            </Typography>
+            <div style={buttonClassStyle}>
+              <Styledbutton2
+                onClick={handleClose}
+                variant='contained'
+                // color='primary'
+              >
+                Accept
+              </Styledbutton2>
+              <Styledbutton1 onClick={handleClose} variant='contained'>
+                Decline
+              </Styledbutton1>
+            </div>
+          </div>
+          <Divider />
+          <div data-align='center' className={classes.root}>
+            <Typography variant='body1' align='center'>
+              XYZ wants to join taskborad 1 in project 1
+            </Typography>
+            <div style={buttonClassStyle}>
+              <Styledbutton2
+                onClick={handleClose}
+                variant='contained'
+                // color='primary'
+              >
+                Accept
+              </Styledbutton2>
+              <Styledbutton1
+                onClick={handleClose}
+                variant='contained'
+                // color='secondary'
+              >
+                Decline
+              </Styledbutton1>
+            </div>
+          </div>
+          <Divider />
+          <div className={classes.root}>
+            <Typography variant='body1' align='center'>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
+              voluptatibus fugiat cumque doloribus, et inventore fuga quo
+              reiciendis quas aperiam!
+            </Typography>
+            <div style={buttonClassStyle}>
+              <Styledbutton1
+                variant='contained'
+                // color='primary'
+                href='#contained-buttons'
+                onClick={handleClose}
+              >
+                Request to join
+              </Styledbutton1>
+            </div>
+          </div>
+          <Divider />
+          <div className={classes.root}>
+            <Typography variant='body1' align='center'>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
+              voluptatibus fugiat cumque doloribus, et inventore fuga quo
+              reiciendis quas aperiam!
+            </Typography>
+            <div style={buttonClassStyle}>
+              <Styledbutton1
+                variant='contained'
+                // color='primary'
+                href='#contained-buttons'
+                onClick={handleClose}
+              >
+                Request to join
+              </Styledbutton1>
+            </div>
+          </div>
+          <Divider />
+          <div className={classes.root}>
+            <Typography variant='body1' align='center'>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
+              voluptatibus fugiat cumque doloribus, et inventore fuga quo
+              reiciendis quas aperiam!
+            </Typography>
+            <div style={buttonClassStyle}>
+              <Styledbutton1
+                variant='contained'
+                // color='primary'
+                href='#contained-buttons'
+                onClick={handleClose}
+              >
+                Request to join
+              </Styledbutton1>
+            </div>
+          </div>
+          <Divider />
+          <div className={classes.root}>
+            <Typography variant='body1' align='center'>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
+              voluptatibus fugiat cumque doloribus, et inventore fuga quo
+              reiciendis quas aperiam!
+            </Typography>
+            <div style={buttonClassStyle}>
+              <Styledbutton1
+                variant='contained'
+                // color='primary'
+                href='#contained-buttons'
+                onClick={handleClose}
+              >
+                Request to join
+              </Styledbutton1>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
-
+  function NotifHead() {
+    return (
+      <div className={classes.notifHead}>
+        <Typography
+          variant='h6'
+          style={{
+            alignSelf: 'center',
+          }}
+        >
+          NOTIFICATIONS
+        </Typography>
+        <IconButton
+          color='inherit'
+          style={{
+            alignSelf: 'center',
+            position: 'absolute',
+            right: '0',
+            top: '1',
+          }}
+        >
+          <CancelOutlinedIcon
+            variant='contained'
+            align='right'
+            onClick={handleClose}
+          />
+        </IconButton>
+      </div>
+    );
+  }
+  function NotifBlock() {
+    return (
+      <Modal
+        id='simple-menu'
+        anchorEl={anchorEl}
+        anchorReference='anchorEl'
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        MenuListProps={{ disablePadding: true }}
+        borderRadius={16}
+      >
+        <Paper
+          style={{
+            display: 'flex',
+            position: 'absolute',
+            top: 20,
+            right: 20,
+            justifyContent: 'right',
+            flexDirection: 'column',
+          }}
+        >
+          <NotifHead />
+          <NotifContent />
+        </Paper>
+      </Modal>
+    );
+  }
   return (
     <div className={classes.root}>
       <div>
         <NotificationsIcon
+          aria-controls='simple-menu'
+          aria-haspopup='true'
+          onClick={handleClick}
           variant='contained'
           // color='primary'
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup='true'
-          onClick={handleToggle}
         />
-        <Popper
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          transition
-          disablePortal
-        >
-          {/* // @ts-ignore */}
-          {({
-            TransitionProps,
-            placement,
-          }: {
-            TransitionProps: any;
-            placement: any;
-          }) => (
-            <Grow
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === 'bottom' ? 'center top' : 'center bottom',
-              }}
-            >
-              <Paper style={{ maxHeight: 500, width: 300, overflow: 'auto' }}>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={open}
-                    id='menu-list-grow'
-                    onKeyDown={handleListKeyDown}
-                    style={{ padding: 0 }}
-                  >
-                    <div>
-                      <Typography
-                        variant='h5'
-                        align='center'
-                        className={classes.notifHead}
-                      >
-                        Notifications
-                      </Typography>
-                      <div data-align='center' className={classes.root}>
-                        <Typography variant='body2' align='center'>
-                          XYZ wants to join project 1
-                        </Typography>
-                        <Button
-                          onClick={handleClose}
-                          variant='contained'
-                          color='primary'
-                        >
-                          Accept
-                        </Button>
-                        <Button
-                          onClick={handleClose}
-                          variant='contained'
-                          color='secondary'
-                        >
-                          Decline
-                        </Button>
-                      </div>
-                      <Divider />
-                      <div data-align='center' className={classes.root}>
-                        <Typography variant='body2' align='center'>
-                          XYZ wants to join taskborad 1 in project 1
-                        </Typography>
-                        <Button
-                          onClick={handleClose}
-                          variant='contained'
-                          color='primary'
-                        >
-                          Accept
-                        </Button>
-                        <Button
-                          onClick={handleClose}
-                          variant='contained'
-                          color='secondary'
-                        >
-                          Decline
-                        </Button>
-                      </div>
-                      <Divider />
-                      <div className={classes.root}>
-                        <Typography variant='body2' align='center'>
-                          There are 15 new messages in taskboard 5
-                        </Typography>
-                        <div data-align='center'>
-                          <Button
-                            variant='contained'
-                            color='primary'
-                            href='#contained-buttons'
-                            onClick={handleClose}
-                          >
-                            Go to channel
-                          </Button>
-                        </div>
-                      </div>
-                      <Divider />
-                      <div className={classes.root}>
-                        <Typography variant='body2' align='center'>
-                          XYZ created a new project pqrs
-                        </Typography>
-                        <div data-align='center'>
-                          <Button
-                            variant='contained'
-                            color='primary'
-                            href='#contained-buttons'
-                            onClick={handleClose}
-                          >
-                            Request to join
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
+        <NotifBlock />
       </div>
     </div>
   );
