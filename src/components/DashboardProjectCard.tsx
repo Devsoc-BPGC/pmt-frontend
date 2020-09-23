@@ -15,41 +15,60 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       padding: '1em',
-      height: '20vh',
-      backgroundColor: 'rgb(163, 181, 255)',
+      height: '12vh',
+      backgroundColor: '#1B262C',
     },
-    project: {
+    addproject: {
       width: '10vw',
-      height: ' 15vh',
+      height: ' 10vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       margin: '1em',
+      backgroundColor: '#0F4C75',
+      borderRadius: '10px'
+    },
+    project: {
+      width: '10vw',
+      height: ' 10vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '1em',
+      backgroundColor: '#BBE1FA',
+      borderRadius: '10px'
     },
     projectbtn: {
       width: '10vw',
-      height: '15vh',
+      height: '10vh',
+      color: '#0F4C75',
+      backgroundColor: '#BBE1FA',
+      borderRadius: '10px'
     },
     taskboards: {
       display: 'grid',
       gridTemplateColumns: '20% 20% 20% 20%',
       gridGap: '1em',
-      backgroundColor: '#3F51B5',
+      backgroundColor: '#0F4C75',
+      borderRadius: '5px'
     },
     taskboard: {
+      height: '13vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       margin: '1em',
+      borderRadius: '10px'
     },
     taskboardbtn: {
       width: '15vw',
       height: '15vh',
+      color: 'white',
+      backgroundColor: '#1B262C'
     },
     active: {
-      backgroundColor: '#3F51B5',
-      paddingBottom: '1.1em',
-      paddingTop: '0.3em',
+      backgroundColor: '#0F4C75',
+      borderRadius: '5px'
     },
   })
 );
@@ -58,7 +77,7 @@ type ID = {
   id: number;
 };
 
-const DashboardTaskboard = ({ id }: ID) => {
+const DashboardProjectCard = ({ id }: ID) => {
   interface Taskboard {
     id: number;
     name: string;
@@ -147,9 +166,9 @@ const DashboardTaskboard = ({ id }: ID) => {
     <div>
       <CssBaseline />
       <div className={classes.projects}>
-        <Card className={classes.project}>
+        <Card className={classes.addproject}>
           <CardContent>
-            <Button className={classes.projectbtn} style={{ fontSize: '75px' }}>
+            <Button className={classes.projectbtn} style={{ fontSize: '65px', color: 'white', backgroundColor: '#0F4C75', paddingTop: '0.25em',  }}>
               +
             </Button>
           </CardContent>
@@ -213,4 +232,4 @@ const DashboardTaskboard = ({ id }: ID) => {
   );
 };
 
-export default DashboardTaskboard;
+export default DashboardProjectCard;
