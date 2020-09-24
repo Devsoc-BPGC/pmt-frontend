@@ -3,7 +3,6 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -16,41 +15,60 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       padding: '1em',
-      height: '20vh',
-      backgroundColor: 'rgb(163, 181, 255)',
+      height: '12vh',
+      backgroundColor: '#1B262C',
     },
-    project: {
+    addproject: {
       width: '10vw',
-      height: ' 15vh',
+      height: ' 10vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       margin: '1em',
+      backgroundColor: '#0F4C75',
+      borderRadius: '10px'
+    },
+    project: {
+      width: '10vw',
+      height: ' 10vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '1em',
+      backgroundColor: '#BBE1FA',
+      borderRadius: '10px'
     },
     projectbtn: {
       width: '10vw',
-      height: '15vh',
+      height: '10vh',
+      color: '#0F4C75',
+      backgroundColor: '#BBE1FA',
+      borderRadius: '10px'
     },
     taskboards: {
       display: 'grid',
       gridTemplateColumns: '20% 20% 20% 20%',
       gridGap: '1em',
-      backgroundColor: '#3F51B5',
+      backgroundColor: '#0F4C75',
+      borderRadius: '5px'
     },
     taskboard: {
+      height: '13vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       margin: '1em',
+      borderRadius: '10px'
     },
     taskboardbtn: {
       width: '15vw',
       height: '15vh',
+      color: 'white',
+      backgroundColor: '#1B262C'
     },
     active: {
-      backgroundColor: '#3F51B5',
-      paddingBottom: '1.1em',
-      paddingTop: '0.3em',
+      backgroundColor: '#0F4C75',
+      borderRadius: '5px'
     },
   })
 );
@@ -59,7 +77,7 @@ type ID = {
   id: number;
 };
 
-const DashboardTaskboard = ({ id }: ID) => {
+const DashboardProjectCard = ({ id }: ID) => {
   interface Taskboard {
     id: number;
     name: string;
@@ -148,17 +166,20 @@ const DashboardTaskboard = ({ id }: ID) => {
     <div>
       <CssBaseline />
       <div className={classes.projects}>
-        <Card className={classes.project}>
+        <Card className={classes.addproject}>
           <CardContent>
-            <Button className={classes.projectbtn} style={{ fontSize: '75px' }}>
+            <Button className={classes.projectbtn} style={{ fontSize: '65px', color: 'white', backgroundColor: '#0F4C75', paddingTop: '0.25em',  }}>
               +
             </Button>
           </CardContent>
         </Card>
         {projects.map((project: Project) => {
           return (
-            <div className={project.isActive ? classes.active : ''}>
-              <Card key={project.id} className={classes.project}>
+            <div
+              className={project.isActive ? classes.active : ''}
+              key={project.id}
+            >
+              <Card className={classes.project}>
                 <CardContent>
                   <Button
                     className={classes.projectbtn}
@@ -193,20 +214,22 @@ const DashboardTaskboard = ({ id }: ID) => {
             </Button>
           </CardContent>
         </Card>
-        {projects[active].taskboards.map((taskboard: Taskboard) => {
-          return (
-            <Card className={classes.taskboard}>
-              <CardContent>
-                <Button className={classes.taskboardbtn}>
-                  {taskboard.name}
-                </Button>
-              </CardContent>
-            </Card>
-          );
-        })}
+        {projects[active].taskboards.map(
+          (taskboard: Taskboard, index: number) => {
+            return (
+              <Card className={classes.taskboard} key={index}>
+                <CardContent>
+                  <Button className={classes.taskboardbtn}>
+                    {taskboard.name}
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          }
+        )}
       </div>
     </div>
   );
 };
 
-export default DashboardTaskboard;
+export default DashboardProjectCard;
