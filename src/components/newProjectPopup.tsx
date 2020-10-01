@@ -1,280 +1,277 @@
 import React from 'react';
+import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import Typography from '@material-ui/core/Typography';
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-import IconButton from '@material-ui/core/IconButton';
-import styled from 'styled-components';
-import { Dimensions } from 'react-native';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import { Typography, Divider, IconButton } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import CheckIcon from '@material-ui/icons/Check';
 import './NotifPanel.css';
-import { Modal, Box, Paper } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+const colorPalette = require('../colorPalette.png');
+const uploadImage = require('../uploadImage.png');
 
-// const styles = require(../css/NotifPanel.css);
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+  return {
+    // borderRadius: `20px`,
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+    display: `flex`,
+    backgroundColor: `#1B262C`,
+    color: `#BBE1FA`,
+    boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)`,
+    justifyContent: 'space-around',
+    fontStyle: `normal`,
+    fontWeight: `bold`,
+    lineHeight: `45px`,
+    textAlign: `start`,
+    paddingLeft: '0',
+  };
+}
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-const useStyles = makeStyles(theme => ({
-  shape: {
-    borderRadius: 50,
-  },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-  },
-  notifPanelStyle: {
-    backgroundColor: '#BBE1FA',
-    padding: 0,
-    maxWidth: (25 * windowWidth) / 100,
-    maxHeight: (60 * windowHeight) / 100,
-  },
-  notifHead: {
-    ...theme.typography.button,
-    padding: theme.spacing(),
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: '#0F4C75',
-    color: '#BBE1FA',
-  },
-  root: {
-    '& > *': {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    margin: {
       margin: theme.spacing(1),
     },
-  },
-}));
-const Styledbutton1 = styled(Button)`
-  background-color: #0f4c75;
-  color: #ffffff;
-`;
-const Styledbutton2 = styled(Button)`
-  background-color: #ffffff;
-  color: #000000;
-`;
-export default function NotifPanel() {
-  const buttonClassStyle = {
-    display: 'flex',
-    justifyContent: 'space-around',
-    margin: 0,
-    paddingBottom: 10,
-  };
-  /// /////////////////////////
+    names: {
+      color: '#000000',
+      margin: 0,
+      textAlign: 'start',
+      marginLeft: 20,
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
+    paper: {
+      borderRadius: '50px',
+      position: 'absolute',
+      width: '35vw',
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: '20px',
+      paddingTop: 0,
+      paddingRight: 0,
+    },
+    projectbtn: {
+      width: '10vw',
+      height: '10vh',
+      color: '#0F4C75',
+      backgroundColor: '#BBE1FA',
+      borderRadius: '10px',
+    },
+    textField: {
+      borderRadius: '10px',
+      backgroundColor: '#ffff',
+      marginLeft: 0,
+      marginRight: 0,
+      marginTop: 0,
+      marginBottom: 10,
+      width: '100%',
+      // margin: 0,
+    },
+    icon: {
+      fontSize: '3em',
+      margin: 'auto',
+      marginRight: 10,
+      verticalAlign: 'middle',
+    },
+  })
+);
 
+export default function NewProjectPopup() {
   const classes = useStyles();
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = (event: { currentTarget: any }) => {
-    setAnchorEl(event.currentTarget);
-    setOpen(!open);
+  // const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  //   setAge(event.target.value as string);
+  // };
+  const handleOpen = () => {
+    setOpen(true);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
     setOpen(false);
   };
-
-  function NotifContent() {
+  function AddMembers() {
     return (
-      <div
-        style={{
-          backgroundColor: '#BBE1FA',
-          overflowY: 'scroll',
-        }}
-        className={classes.notifPanelStyle}
-      >
-        <div>
-          <div className={classes.root}>
-            <Typography variant='body1' align='center'>
-              XYZ wants to join project 1
-            </Typography>
-            <div style={buttonClassStyle}>
-              <Styledbutton2
-                onClick={handleClose}
-                variant='contained'
-                // color='primary'
+      <div style={{ width: '100%' }}>
+        <h2
+          style={{
+            padding: '0',
+            margin: '0',
+            alignSelf: 'start',
+            verticalAlign: 'bottom',
+          }}
+        >
+          Add Members
+        </h2>
+        <div className={classes.textField}>
+          <div className={classes.names}>
+            <Typography
+              variant='body1'
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <p
+                style={{
+                  display: 'inline',
+                  margin: '0.5em',
+                  fontSize: '1.25em',
+                  verticalAlign: 'middle',
+                }}
               >
-                Accept
-              </Styledbutton2>
-              <Styledbutton1 onClick={handleClose} variant='contained'>
-                Decline
-              </Styledbutton1>
-            </div>
+                SELECT MEMBERS
+              </p>
+              <ExpandMoreIcon className={classes.icon} />
+            </Typography>
           </div>
-          <Divider />
-          <div data-align='center' className={classes.root}>
-            <Typography variant='body1' align='center'>
-              XYZ wants to join taskborad 1 in project 1
+          <div style={{ overflowY: 'auto', maxHeight: '25vh', width: '100%' }}>
+            <Divider />
+            <Typography className={classes.names} variant='body1'>
+              <div>
+                <AccountCircleIcon className={classes.icon} />
+                Name
+              </div>
+              <CheckIcon
+                style={{ fontSize: '2em', margin: 0, verticalAlign: 'middle' }}
+              />
             </Typography>
-            <div style={buttonClassStyle}>
-              <Styledbutton2
-                onClick={handleClose}
-                variant='contained'
-                // color='primary'
-              >
-                Accept
-              </Styledbutton2>
-              <Styledbutton1
-                onClick={handleClose}
-                variant='contained'
-                // color='secondary'
-              >
-                Decline
-              </Styledbutton1>
-            </div>
-          </div>
-          <Divider />
-          <div className={classes.root}>
-            <Typography variant='body1' align='center'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
-              voluptatibus fugiat cumque doloribus, et inventore fuga quo
-              reiciendis quas aperiam!
+            <Divider />
+            <Typography className={classes.names} variant='body1'>
+              <div>
+                <AccountCircleIcon className={classes.icon} />
+                Name
+              </div>
+              <CheckIcon
+                style={{ fontSize: '2em', margin: 0, verticalAlign: 'middle' }}
+              />
             </Typography>
-            <div style={buttonClassStyle}>
-              <Styledbutton1
-                variant='contained'
-                // color='primary'
-                href='#contained-buttons'
-                onClick={handleClose}
-              >
-                Request to join
-              </Styledbutton1>
-            </div>
-          </div>
-          <Divider />
-          <div className={classes.root}>
-            <Typography variant='body1' align='center'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
-              voluptatibus fugiat cumque doloribus, et inventore fuga quo
-              reiciendis quas aperiam!
+            <Divider />
+            <Typography className={classes.names} variant='body1'>
+              <div>
+                <AccountCircleIcon className={classes.icon} />
+                Name
+              </div>
             </Typography>
-            <div style={buttonClassStyle}>
-              <Styledbutton1
-                variant='contained'
-                // color='primary'
-                href='#contained-buttons'
-                onClick={handleClose}
-              >
-                Request to join
-              </Styledbutton1>
-            </div>
-          </div>
-          <Divider />
-          <div className={classes.root}>
-            <Typography variant='body1' align='center'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
-              voluptatibus fugiat cumque doloribus, et inventore fuga quo
-              reiciendis quas aperiam!
+            <Divider />
+            <Typography className={classes.names} variant='body1'>
+              <div>
+                <AccountCircleIcon className={classes.icon} />
+                Name
+              </div>
             </Typography>
-            <div style={buttonClassStyle}>
-              <Styledbutton1
-                variant='contained'
-                // color='primary'
-                href='#contained-buttons'
-                onClick={handleClose}
-              >
-                Request to join
-              </Styledbutton1>
-            </div>
-          </div>
-          <Divider />
-          <div className={classes.root}>
-            <Typography variant='body1' align='center'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
-              voluptatibus fugiat cumque doloribus, et inventore fuga quo
-              reiciendis quas aperiam!
+            <Divider />
+            <Typography className={classes.names} variant='body1'>
+              <div>
+                <AccountCircleIcon className={classes.icon} />
+                Name
+              </div>
             </Typography>
-            <div style={buttonClassStyle}>
-              <Styledbutton1
-                variant='contained'
-                // color='primary'
-                href='#contained-buttons'
-                onClick={handleClose}
-              >
-                Request to join
-              </Styledbutton1>
-            </div>
+            <Divider />
+            <Typography className={classes.names} variant='body1'>
+              <div>
+                <AccountCircleIcon className={classes.icon} />
+                Name
+              </div>
+            </Typography>
+            <Divider />
           </div>
         </div>
       </div>
     );
   }
-  function NotifHead() {
-    return (
-      <div className={classes.notifHead}>
-        <Typography
-          variant='h6'
-          style={{
-            alignSelf: 'center',
-          }}
-        >
-          NOTIFICATIONS
-        </Typography>
-        <IconButton
-          color='inherit'
-          style={{
-            alignSelf: 'center',
-            position: 'absolute',
-            right: '0',
-            top: '1',
-          }}
-        >
-          <CancelOutlinedIcon
-            variant='contained'
-            align='right'
-            onClick={handleClose}
-          />
-        </IconButton>
-      </div>
-    );
-  }
-  function NotifBlock() {
-    return (
-      <Modal
-        id='simple-menu'
-        anchorEl={anchorEl}
-        anchorReference='anchorEl'
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        MenuListProps={{ disablePadding: true }}
-        borderRadius={16}
-      >
-        <Paper
-          style={{
-            display: 'flex',
-            position: 'absolute',
-            top: 20,
-            right: 20,
-            justifyContent: 'right',
-            flexDirection: 'column',
-          }}
-        >
-          <NotifHead />
-          <NotifContent />
-        </Paper>
-      </Modal>
-    );
-  }
-  return (
-    <div className={classes.root}>
-      <div>
-        <NotificationsIcon
-          aria-controls='simple-menu'
-          aria-haspopup='true'
-          onClick={handleClick}
-          variant='contained'
-          // color='primary'
+  const body = (
+    <div style={modalStyle} className={classes.paper}>
+      <div style={{ width: '60%', marginLeft: '20px', paddingTop: '25px' }}>
+        <h2 style={{ padding: '0', margin: '0', alignSelf: 'start' }}>
+          Project name
+        </h2>
+        <TextField
+          id='outlined-margin-dense'
+          // defaultValue='Default Value'
+          className={classes.textField}
+          margin='dense'
+          variant='outlined'
         />
-        <NotifBlock />
+        <AddMembers />
       </div>
+      <div style={{ width: '30%' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <IconButton onClick={handleClose}>
+            <CloseIcon
+              // variant='contained'
+              className={classes.icon}
+              style={{ fontSize: '1.5em', margin: 0, color: '#fff' }}
+            />
+          </IconButton>
+        </div>
+        <div style={{ paddingRight: '1.5em' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+            }}
+          >
+            <IconButton>
+              <img
+                src={String(uploadImage)}
+                alt='uploadImage'
+                style={{ width: '2.2em' }}
+              />
+            </IconButton>
+            <p style={{ lineHeight: '20px' }}>Upload an image </p>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+            }}
+          >
+            <IconButton>
+              <img
+                src={String(colorPalette)}
+                alt='colorPalette'
+                style={{ width: '2.2em' }}
+              />
+            </IconButton>
+            <p style={{ lineHeight: '20px' }}>pick a color </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div>
+      <Button
+        className={classes.projectbtn}
+        style={{
+          fontSize: '65px',
+          color: 'white',
+          backgroundColor: '#0F4C75',
+          paddingTop: '0.25em',
+        }}
+        onClick={handleOpen}
+      >
+        +
+      </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='simple-modal-title'
+        aria-describedby='simple-modal-description'
+      >
+        {body}
+      </Modal>
     </div>
   );
 }
