@@ -170,7 +170,13 @@ export default function ChannelSideBar() {
   const [state, setState] = React.useState({
     right: false,
   });
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState([]);
+
+  React.useEffect(() => {
+    channels_data.forEach((project: Project) => {
+      setOpen((oldOpen: Array<Boolean>) => [...oldOpen, project.isActive]);
+    });
+  }, []);
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (event: any) => {
     if (
@@ -211,16 +217,22 @@ export default function ChannelSideBar() {
                 <ListItem
                   button
                   onClick={() => {
-                    setOpen(!open);
+                    let newOpen = open;
+                    project.isActive = !project.isActive;
+                    newOpen[project.id] = project.isActive;
+                    setOpen((oldOpen: Array<Boolean>) => [
+                      ...oldOpen,
+                      project.isActive,
+                    ]);
                   }}
                   className={classes.projectList}
                   key={project.id}
                 >
                   <Typography>{project.name}</Typography>
-                  {open ? <ExpandLess /> : <ExpandMore />}
+                  {open[project.id] ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
                 <Collapse
-                  in={open}
+                  in={open[project.id]}
                   timeout='auto'
                   unmountOnExit
                   className={classes.channelList}
