@@ -4,7 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
+import NewProjectPopup from './NewProjectPopup';
+import NewTaskBoardPopup from './NewTaskBoardPopup';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       margin: '1em',
       backgroundColor: '#0F4C75',
-      borderRadius: '10px'
+      borderRadius: '10px',
     },
     project: {
       width: '10vw',
@@ -36,21 +37,21 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       margin: '1em',
       backgroundColor: '#BBE1FA',
-      borderRadius: '10px'
+      borderRadius: '10px',
     },
     projectbtn: {
       width: '10vw',
       height: '10vh',
       color: '#0F4C75',
       backgroundColor: '#BBE1FA',
-      borderRadius: '10px'
+      borderRadius: '10px',
     },
     taskboards: {
       display: 'grid',
       gridTemplateColumns: '20% 20% 20% 20%',
       gridGap: '1em',
       backgroundColor: '#0F4C75',
-      borderRadius: '5px'
+      borderRadius: '5px',
     },
     taskboard: {
       height: '13vh',
@@ -58,17 +59,17 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'center',
       margin: '1em',
-      borderRadius: '10px'
+      borderRadius: '10px',
     },
     taskboardbtn: {
       width: '15vw',
       height: '15vh',
       color: 'white',
-      backgroundColor: '#1B262C'
+      backgroundColor: '#1B262C',
     },
     active: {
       backgroundColor: '#0F4C75',
-      borderRadius: '5px'
+      borderRadius: '5px',
     },
   })
 );
@@ -168,9 +169,7 @@ const DashboardProjectCard = ({ id }: ID) => {
       <div className={classes.projects}>
         <Card className={classes.addproject}>
           <CardContent>
-            <Button className={classes.projectbtn} style={{ fontSize: '65px', color: 'white', backgroundColor: '#0F4C75', paddingTop: '0.25em',  }}>
-              +
-            </Button>
+            <NewProjectPopup />
           </CardContent>
         </Card>
         {projects.map((project: Project) => {
@@ -206,12 +205,7 @@ const DashboardProjectCard = ({ id }: ID) => {
       <div className={classes.taskboards}>
         <Card className={classes.taskboard}>
           <CardContent>
-            <Button
-              className={classes.taskboardbtn}
-              style={{ fontSize: '75px' }}
-            >
-              +
-            </Button>
+            <NewTaskBoardPopup />
           </CardContent>
         </Card>
         {projects[active].taskboards.map(
