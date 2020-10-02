@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import NewProjectPopup from './NewProjectPopup';
-
+import NewTaskBoardPopup from './NewTaskBoardPopup';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -205,12 +205,7 @@ const DashboardProjectCard = ({ id }: ID) => {
       <div className={classes.taskboards}>
         <Card className={classes.taskboard}>
           <CardContent>
-            <Button
-              className={classes.taskboardbtn}
-              style={{ fontSize: '75px' }}
-            >
-              +
-            </Button>
+            <NewTaskBoardPopup />
           </CardContent>
         </Card>
         {projects[active].taskboards.map(
