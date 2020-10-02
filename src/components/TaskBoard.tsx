@@ -13,6 +13,7 @@ import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import Sidenav from './Sidenav';
 import Topnav from './Topnav';
 import TaskCard from './TaskCard';
+import TaskinfoModal from './TaskinfoModal';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -130,6 +131,7 @@ const TaskBoard = () => {
                             label='Add a TaskCard'
                             variant='outlined'
                           />
+                          <TaskinfoModal />
                         </Grid>
                       </Grid>
                     </div>
