@@ -11,7 +11,7 @@ import './TaskCard.css';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#848484',
+    backgroundColor: '#3282B8',
     marginBottom: '1rem',
     marginTop: '1rem',
   },
@@ -28,6 +28,13 @@ const useStyles = makeStyles({
   },
   action: {
     backgroundColor: '#ffffff',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  padd: {
+    padding: '0.4rem',
+    boxShadow: '3px 3px 5px grey ',
+    textTransform: 'capitalize',
   },
 });
 
@@ -40,7 +47,7 @@ const TaskCard = ({ title }: Desc) => {
     <Card
       style={{ width: 'fit-container' }}
       className={classes.root}
-      bgcolor='#646464'
+      bgcolor='#3282B8'
       id='grow'
     >
       <CardContent>
@@ -49,11 +56,13 @@ const TaskCard = ({ title }: Desc) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.action}>
-        <Button size='small'>Assign Me</Button>
-        {'     '}
         <IconButton aria-label='view comments'>
-          <CommentIcon fontSize='small' />
+          <CommentIcon fontSize='small' htmlColor='black' />
         </IconButton>
+
+        <Button size='medium' id='button' className={classes.padd}>
+          {'Assign Me'}
+        </Button>
       </CardActions>
     </Card>
   );

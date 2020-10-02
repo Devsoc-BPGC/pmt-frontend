@@ -1,7 +1,23 @@
 #grow {
-  transition: 0.3s;
+  transition: 0.2s;
 }
 #grow:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   /* transform: translateX(20px); */
+}
+
+#no-deco {
+  text-decoration: none;
+}
+
+#button {
+  border-radius: 30px;
+  background-color: #bbe1fa;
+}
+
+
+
+#end-add {
+  height: 3vh;
+  border-radius: 10px;
 }
