@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import styled from 'styled-components';
 import { Dimensions } from 'react-native';
 import './NotifPanel.css';
-import { Modal, Box, Paper } from '@material-ui/core';
+import { Modal, Paper } from '@material-ui/core';
 
 // const styles = require(../css/NotifPanel.css);
 
