@@ -1,0 +1,194 @@
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  CardActions,
+} from '@material-ui/core';
+
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+  },
+  issue: {
+    backgroundColor: '#BBE1FA',
+    color: '#1b262c',
+    margin: '0.5rem',
+    width: '175px',
+    maxHeight: '175px',
+    overflow: 'hidden',
+    borderRadius: '20px',
+    transition: 'max-height 0.2s ease-in-out',
+    '&:hover': {
+      boxShadow: '0 0 12px #d3d3d3',
+      cursor: 'pointer',
+      maxHeight: 'max-content',
+    },
+  },
+  extraContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  taskButton: {
+    marginBottom: '1rem',
+    background: '#0F4C75',
+    color: '#BBE1FA',
+    '&:hover': {
+      background: '#0F4C75',
+      color: '#BBE1FA',
+    },
+  },
+  cardFooter: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  projectName: {
+    color: '#0F4C75',
+    textAlign: 'center',
+    top: 100000,
+    bottom: 0,
+    position: 'sticky',
+    fontWeight: 600,
+  },
+});
+
+interface Issue {
+  id: number;
+  projectName: string;
+  body: string;
+  task: number;
+  taskboard: number;
+  date: Date;
+  isShown: boolean;
+}
+
+const issues_data = [
+  {
+    id: 0,
+    projectName: 'Mello',
+    body: '@arjun assigned you to complete wireframes',
+    task: 12,
+    taskboard: 3,
+    date: new Date(),
+    isShown: false,
+  },
+  {
+    id: 1,
+    projectName: 'CSA',
+    body: '@arjun assigned you to work in the CSA Marketplace',
+    task: 3,
+    taskboard: 4,
+    date: new Date(),
+    isShown: false,
+  },
+  {
+    id: 2,
+    projectName: 'Waves',
+    body: '@arjun created a new issue for waves backend',
+    task: 5,
+    taskboard: 6,
+    date: new Date(),
+    isShown: false,
+  },
+  {
+    id: 3,
+    projectName: 'Scanf()',
+    body: '@ishant created a new issue in backend',
+    task: 8,
+    taskboard: 1,
+    date: new Date(),
+    isShown: false,
+  },
+  {
+    id: 4,
+    projectName: 'Mello',
+    body: '@sarvesh created a new issue in chat-module',
+    task: 7,
+    taskboard: 2,
+    date: new Date(),
+    isShown: false,
+  },
+  {
+    id: 5,
+    projectName: 'Mello',
+    body: '@sarvesh assigned you a new task',
+    task: 15,
+    taskboard: 2,
+    date: new Date(),
+    isShown: false,
+  },
+];
+
+const Issues = () => {
+  const classes = useStyles();
+
+  const [isShown, setIsShown] = React.useState([]);
+
+  React.useEffect(() => {
+    issues_data.forEach((issue: Issue) => {
+      setIsShown((oldIsShown: Array<boolean>) => {
+        return [...oldIsShown, issue.isShown];
+      });
+    });
+  }, []);
+
+  return (
+    <div className={classes.root}>
+      {issues_data.map((issue: Issue) => {
+        return (
+          <React.Fragment>
+            <Card
+              style={{ width: 'fit-container' }}
+              className={classes.issue}
+              onMouseEnter={() => {
+                let newIsShown = isShown;
+                issue.isShown = true;
+                newIsShown[issue.id] = issue.isShown;
+                setIsShown((oldIsShown: Array<boolean>) => {
+                  return [...oldIsShown, issue.isShown];
+                });
+              }}
+              onMouseLeave={() => {
+                let newIsShown = isShown;
+                issue.isShown = false;
+                newIsShown[issue.id] = issue.isShown;
+                setIsShown((oldIsShown: Array<boolean>) => {
+                  return [...oldIsShown, issue.isShown];
+                });
+              }}
+            >
+              <CardContent>
+                <Typography variant='subtitle1' component='p'>
+                  {issue.body}
+                </Typography>
+
+                {isShown[issue.id] && (
+                  <div className={classes.extraContent}>
+                    <Typography variant='subtitle1' component='p'>
+                      Task #{issue.task} in Taskboard {issue.taskboard} at{' '}
+                      {issue.date.toDateString()},{' '}
+                      {issue.date.toLocaleTimeString()}
+                    </Typography>
+                    <Button variant='contained' className={classes.taskButton}>
+                      Go To Task
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+              <CardActions className={classes.cardFooter}>
+                <Typography className={classes.projectName} variant='h5'>
+                  {issue.projectName}
+                </Typography>
+              </CardActions>
+            </Card>
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+};
+
+export default Issues;
