@@ -10,7 +10,6 @@ import {
   Paper,
   Typography,
   Drawer,
-  Button,
   List,
   Divider,
   ListItem,
@@ -52,6 +51,10 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'space-between',
       boxShadow: 'inset 4px 0px 4px rgba(255, 255, 255, 0.25)',
+      '&:hover': {
+        backgroundColor: '#BBE1FA',
+        color: '#1b262c',
+      },
     },
     channelList: {
       background: '#1b262c',
@@ -278,9 +281,7 @@ export default function ChannelSideBar() {
     <div>
       {(['right'] as Anchor[]).map(anchor => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>
-            <ChatBubbleIcon />
-          </Button>
+          <ChatBubbleIcon onClick={toggleDrawer(anchor, true)} />
           <Paper className={classes.drawer}>
             <Drawer
               anchor={anchor}

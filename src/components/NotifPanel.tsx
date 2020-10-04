@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import styled from 'styled-components';
 import { Dimensions } from 'react-native';
 import './NotifPanel.css';
-import { Modal, Paper } from '@material-ui/core';
+import { Modal, Paper, Badge } from '@material-ui/core';
 
 // const styles = require(../css/NotifPanel.css);
 
@@ -266,14 +266,15 @@ export default function NotifPanel() {
   return (
     <div className={classes.root}>
       <div>
-        <NotificationsIcon
-          aria-controls='simple-menu'
-          aria-haspopup='true'
-          onClick={handleClick}
-          variant='contained'
-          // color='primary'
-        />
-        <NotifBlock />
+        <Badge badgeContent={6} color='secondary'>
+          <NotificationsIcon
+            aria-controls='simple-menu'
+            aria-haspopup='true'
+            onClick={handleClick}
+            variant='contained'
+          />
+          <NotifBlock />
+        </Badge>
       </div>
     </div>
   );

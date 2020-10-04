@@ -20,11 +20,11 @@ const useStyles = makeStyles({
     maxHeight: '175px',
     overflow: 'hidden',
     borderRadius: '20px',
-    transition: 'max-height 0.2s ease-in-out',
+    transition: 'all 1s ease-in-out',
     '&:hover': {
       boxShadow: '0 0 12px #d3d3d3',
       cursor: 'pointer',
-      maxHeight: 'max-content',
+      maxHeight: '500px',
     },
   },
   extraContent: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
   },
   taskButton: {
-    marginBottom: '1rem',
+    margin: '1rem 0rem',
     background: '#0F4C75',
     color: '#BBE1FA',
     '&:hover': {
@@ -159,6 +159,7 @@ const Issues = () => {
                   return [...oldIsShown, issue.isShown];
                 });
               }}
+              id='grow'
             >
               <CardContent>
                 <Typography variant='subtitle1' component='p'>
