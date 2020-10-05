@@ -224,8 +224,9 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Sidenav from './Sidenav';
 import Logo from './Logo';
 import Topnav from './Topnav';
-import Issues from './Issues';
-import DashboardProjectCard from './DashboardProjectCard';
+// import Issues from './Issues';
+// import DashboardProjectCard from './DashboardProjectCard';
+import NewTaskBoardPopup from './NewTaskBoardPopup';
 import Deadlines from './Deadlines';
 import './TaskCard.css';
 
@@ -238,8 +239,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     // necessary for content to be below app bar
     paper: {
-      height: '47vh',
-      width: '19vw',
+      height: '50vh',
+      width: '20vw',
       backgroundColor: '#bbe1fa',
 
       padding: '2rem',
