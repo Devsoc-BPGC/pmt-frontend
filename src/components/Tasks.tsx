@@ -174,7 +174,7 @@ const Tasks = () => {
     <div className={classes.root}>
       <CssBaseline />
       <Logo />
-      <Topnav page='Taskboards' index={id} />
+      <Topnav page='Project' index={id} />
       <div className={classes.sidePanels}>
         <Sidenav active='Dashboard' />
         <Deadlines />

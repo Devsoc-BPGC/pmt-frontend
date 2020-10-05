@@ -229,7 +229,6 @@ import DashboardProjectCard from './DashboardProjectCard';
 import Deadlines from './Deadlines';
 import './TaskCard.css';
 
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -351,7 +350,7 @@ const TaskBoard = () => {
     <div className={classes.root}>
       <CssBaseline />
       <Logo />
-      <Topnav page='Taskboards' index='1' />
+      <Topnav page='Project' index='1' />
       <div className={classes.sidePanels}>
         <Sidenav active='Dashboard' />
         <Deadlines />
@@ -373,7 +372,10 @@ const TaskBoard = () => {
               {taskboards.map((taskboard, index) => (
                 <Grid key={index} item>
                   <Button>
-                    <Link to={`/taskboards/${taskboard.id}/tasks`} id='no-deco'>
+                    <Link
+                      to={`/project/${taskboard.id}/taskboard`}
+                      id='no-deco'
+                    >
                       <Paper elevation={6} className={classes.paper} id='grow'>
                         <Typography
                           variant='h4'
