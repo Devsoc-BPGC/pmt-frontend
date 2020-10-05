@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
       flexDirection: 'column',
+      paddingLeft: '250px',
     },
     projects: {
       display: 'flex',

@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: 0,
       width: '75vw',
     },
+    emptySpace: {
+      padding: theme.spacing(3),
+    },
   })
 );
 
@@ -67,16 +70,12 @@ const Home = () => {
       </div>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <br />
-        <br />
-        <br />
+        <div className={classes.emptySpace} />
         <Typography variant='h3' style={{ color: 'white' }}>
           Issues
         </Typography>
         <Issues />
-        <br />
-        <br />
-        <br />
+        <div className={classes.emptySpace} />
         <Typography variant='h3' style={{ color: 'white' }}>
           Projects
         </Typography>

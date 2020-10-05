@@ -25,6 +25,10 @@ const useStyles = makeStyles(() =>
       marginRight: '1rem',
       textTransform: 'uppercase',
     },
+    selected: {
+      background: '#0f4c75 !important',
+      color: '#bbe1fa !important',
+    },
   })
 );
 
@@ -77,6 +81,7 @@ const Deadlines = () => {
                   deadline.date[1] === new Date().toString().split(' ')[1] &&
                   deadline.date[3] === new Date().toString().split(' ')[3]
                 }
+                classes={{ selected: classes.selected }}
               >
                 <div className={classes.date}>
                   <Typography variant='h4'>{deadline.date[2]}</Typography>

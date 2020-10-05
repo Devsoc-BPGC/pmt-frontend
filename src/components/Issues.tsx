@@ -18,9 +18,7 @@ const useStyles = makeStyles({
     margin: '0.5rem',
     width: '175px',
     maxHeight: '175px',
-    overflow: 'hidden',
-    borderRadius: '20px',
-    transition: 'all 1s ease-in-out',
+    transition: 'all 2s ease-in-out',
     '&:hover': {
       boxShadow: '0 0 12px #d3d3d3',
       cursor: 'pointer',
@@ -139,7 +137,7 @@ const Issues = () => {
     <div className={classes.root}>
       {issues_data.map((issue: Issue) => {
         return (
-          <React.Fragment>
+          <>
             <Card
               style={{ width: 'fit-container' }}
               className={classes.issue}
@@ -160,6 +158,7 @@ const Issues = () => {
                 });
               }}
               id='grow'
+              key={issue.id}
             >
               <CardContent>
                 <Typography variant='subtitle1' component='p'>
@@ -185,7 +184,7 @@ const Issues = () => {
                 </Typography>
               </CardActions>
             </Card>
-          </React.Fragment>
+          </>
         );
       })}
     </div>

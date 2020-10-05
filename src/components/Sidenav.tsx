@@ -14,13 +14,14 @@ const useStyles = makeStyles(() =>
       boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
       backgroundColor: '#bbe1fa',
       padding: '1rem 0rem',
+      color: '#1b262c',
     },
     sideNavLink: {
       textAlign: 'center',
-      color: '#1b262c',
     },
-    active: {
-      backgroundColor: '#0f4c75',
+    selected: {
+      background: '#0f4c75 !important',
+      color: '#bbe1fa !important',
     },
   })
 );
@@ -33,7 +34,7 @@ const Sidenav = ({ active }: LinkType) => {
   const classes = useStyles();
   const [selectedSideNavItem, setSelectedSideNavItem] = useState(active);
 
-  const handleSelectedSideNavItem = (event: any, sideNavItem: string) => {
+  const handleSelectedSideNavItem = (sideNavItem: string) => {
     setSelectedSideNavItem(sideNavItem);
   };
 
@@ -47,8 +48,8 @@ const Sidenav = ({ active }: LinkType) => {
                 button
                 key={text}
                 selected={selectedSideNavItem === text}
-                classes={{ selected: classes.active }}
-                onClick={(event: any) => handleSelectedSideNavItem(event, text)}
+                classes={{ selected: classes.selected }}
+                onClick={() => handleSelectedSideNavItem(text)}
               >
                 <ListItemText primary={text} className={classes.sideNavLink} />
               </ListItem>

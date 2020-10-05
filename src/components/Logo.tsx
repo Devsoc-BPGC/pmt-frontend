@@ -5,11 +5,12 @@ import { Toolbar, Typography, AppBar } from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     appBar: {
-      width: `16%`,
+      width: 'max-content',
       borderRadius: '0px 0px 36px 0px',
       left: 0,
       backgroundColor: '#0f4c75',
-      color: '#bbe1fa'
+      color: '#bbe1fa',
+      padding: '0rem 0.2rem',
     },
     grow: {
       flexGrow: 1,
