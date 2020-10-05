@@ -13,6 +13,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import PersonIcon from '@material-ui/icons/Person';
 import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import ListIcon from '@material-ui/icons/List';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -61,9 +63,12 @@ const TaskinfoModal = () => {
 
   return (
     <div>
-      <button type='button' onClick={handleOpen}>
-        Details
-      </button>
+      {/* <button type='button' onClick={handleOpen}>
+        <ListIcon htmlColor='black' />
+      </button> */}
+      <IconButton aria-label='view comments' onClick={handleOpen}>
+        <ListIcon htmlColor='black' />
+      </IconButton>
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
@@ -165,7 +170,13 @@ const TaskinfoModal = () => {
                 </Grid>
               </Grid>
               <Grid item xs={1}>
-                <CloseIcon fontSize='large' style={{ cursor: 'pointer' }} />
+                <IconButton aria-label='view comments' onClick={handleClose}>
+                  <CloseIcon
+                    fontSize='large'
+                    style={{ cursor: 'pointer' }}
+                    htmlColor='#fff'
+                  />
+                </IconButton>
               </Grid>
             </Grid>
           </div>

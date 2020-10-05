@@ -44,9 +44,13 @@ const Topnav = ({ page, index }: Pagetype) => {
             <Typography variant='h4' noWrap>
               Dashboard
             </Typography>
+          ) : page === 'Project' ? (
+            <Typography variant='h4' noWrap>
+              Mello
+            </Typography>
           ) : (
             <Typography variant='h4' noWrap>
-              Taskboard {index}
+              Page not found
             </Typography>
           )}
 
