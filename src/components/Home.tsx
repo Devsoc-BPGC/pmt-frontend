@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Sidenav from './Sidenav';
 import Logo from './Logo';
 import Topnav from './Topnav';
-import DashboardIssueCard from './DashboardIssueCard';
+import Issues from './Issues';
 import DashboardProjectCard from './DashboardProjectCard';
 import Deadlines from './Deadlines';
 
@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-
 const Projects = () => {
   const classes = useStyles();
 
@@ -71,18 +70,15 @@ const Home = () => {
         <br />
         <br />
         <br />
-        <Typography variant='h3' style={{color: 'white'}}>
-            Issues
+        <Typography variant='h3' style={{ color: 'white' }}>
+          Issues
         </Typography>
-        <DashboardIssueCard
-          page='Home'
-          title='@SameshGSOC assigned you issue #19'
-        />
+        <Issues />
         <br />
         <br />
         <br />
-        <Typography variant='h3' style={{color: 'white'}}>
-            Projects
+        <Typography variant='h3' style={{ color: 'white' }}>
+          Projects
         </Typography>
         <Projects />
       </main>

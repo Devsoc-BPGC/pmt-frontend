@@ -5,8 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import NotifPanel from './NotifPanel';
+import ChannelSidebar from './ChannelSidebar';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -62,7 +62,7 @@ const Topnav = ({ page, index }: Pagetype) => {
               </Badge>
             </IconButton>
             <IconButton color='inherit'>
-              <ChatBubbleIcon />
+              <ChannelSidebar />
             </IconButton>
           </div>
         </Toolbar>

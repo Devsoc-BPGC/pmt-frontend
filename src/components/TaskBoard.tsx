@@ -224,10 +224,11 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Sidenav from './Sidenav';
 import Logo from './Logo';
 import Topnav from './Topnav';
-import DashboardIssueCard from './DashboardIssueCard';
+import Issues from './Issues';
 import DashboardProjectCard from './DashboardProjectCard';
 import Deadlines from './Deadlines';
 import './TaskCard.css';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -299,15 +300,15 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Projects = () => {
-  const classes = useStyles();
+// const Projects = () => {
+//   const classes = useStyles();
 
-  return (
-    <div className={classes.project}>
-      <DashboardProjectCard id={0} />
-    </div>
-  );
-};
+//   return (
+//     <div className={classes.project}>
+//       <DashboardProjectCard id={0} />
+//     </div>
+//   );
+// };
 
 const TaskBoard = () => {
   const classes = useStyles();

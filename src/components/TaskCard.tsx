@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
+import TaskinfoModal from './TaskinfoModal';
+
 import './TaskCard.css';
 
 const useStyles = makeStyles({
@@ -56,6 +58,8 @@ const TaskCard = ({ title }: Desc) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.action}>
+        <TaskinfoModal />
+
         <IconButton aria-label='view comments'>
           <CommentIcon fontSize='small' htmlColor='black' />
         </IconButton>
