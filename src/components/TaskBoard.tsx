@@ -13,6 +13,7 @@ import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import Sidenav from './Sidenav';
 import Topnav from './Topnav';
 import TaskCard from './TaskCard';
+import TaskinfoModal from './TaskinfoModal';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -55,7 +56,7 @@ const TaskBoard = () => {
       <div className={classes.root}>
         <CssBaseline />
         <Topnav page='Taskb' index='1' />
-        <Sidenav active="Dashboard" />
+        <Sidenav active='Dashboard' />
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Typography variant='h3'>TaskBoard</Typography>
@@ -130,6 +131,7 @@ const TaskBoard = () => {
                             label='Add a TaskCard'
                             variant='outlined'
                           />
+                          <TaskinfoModal />
                         </Grid>
                       </Grid>
                     </div>
