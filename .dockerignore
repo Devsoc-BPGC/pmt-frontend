@@ -2,5 +2,9 @@
 .gitignore
 build
 node_modules
-Dockerfile
-Dockerfile.prod
+Dockerfile*
+*.md
+.prettierrc
+*.yml
+.eslint*
+.github
