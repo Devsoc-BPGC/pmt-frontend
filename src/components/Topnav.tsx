@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import NotifPanel from './NotifPanel';
-import ChannelSidebar from './ChannelSidebar';
+import ChannelSidebar from './Common/Navigation/ChannelSidebar';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,13 +44,9 @@ const Topnav = ({ page, index }: Pagetype) => {
             <Typography variant='h4' noWrap>
               Dashboard
             </Typography>
-          ) : page === 'Project' ? (
-            <Typography variant='h4' noWrap>
-              Mello
-            </Typography>
           ) : (
             <Typography variant='h4' noWrap>
-              Page not found
+              {page}
             </Typography>
           )}
 

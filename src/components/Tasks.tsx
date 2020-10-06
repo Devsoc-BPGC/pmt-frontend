@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -13,8 +13,6 @@ import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import Sidenav from './Sidenav';
 import Logo from './Logo';
 import Topnav from './Topnav';
-// import DashboardIssueCard from './DashboardIssueCard';
-// import DashboardProjectCard from './DashboardProjectCard';
 import Deadlines from './Deadlines';
 import TaskCard from './TaskCard';
 import './TaskCard.css';
@@ -80,67 +78,129 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-// const Projects = () => {
-//   const classes = useStyles();
 
-//   return (
-//     <div className={classes.project}>
-//       <DashboardProjectCard id={0} />
-//     </div>
-//   );
-// };
+const data = [
+  {
+    id: 0,
+    name: 'Mello',
+    tasks: [
+      [
+        ['Finish Designs- UI/UX Team', 'Plot Experience Maps- UX Team'],
+        ['Final Designs- Rohit and Akanksha', 'Design Documentation- UI team'],
+        ['Wireframes- UI/UX Team'],
+        [
+          'No design for new TaskBoard',
+          'All hover effects not clearly defined',
+        ],
+      ],
+      [
+        [
+          'Execute Wireframes- frontend team',
+          'Complete coding of final designs',
+          'Integrate with backend',
+          'Setup Apollo CLient',
+          'Setup Redux- Rohit',
+        ],
+        ['Hard-coded Final designs- front end team'],
+        ['Hard coded Wirerfames'],
+        [
+          'No integration of all components',
+          'Code is not efficient',
+          'College is very hectic',
+        ],
+      ],
+      [
+        [
+          'Messaging module- kronos team',
+          'Setup graphql and Apollo server- backend team',
+          'Integrate with frontend',
+        ],
+        ['Setup MongoDB and Schemas', 'Setup queries and mutations'],
+        ['Backend Server backbone setup'],
+        ['GraphQL not integrated in setup'],
+      ],
+      [
+        [
+          'Deploy Base website- Deployment team',
+          'Deploy final website- deployment team',
+        ],
+        ['Waiting for completion of base website'],
+        [],
+        [],
+      ],
+      [
+        ['Resolve merge conflicts if any- Review team'],
+        [
+          'Review PRs to frontend repo and merge- Sarvesh',
+          'Review PRs to backend repo and merge- Sarvesh',
+        ],
+        ['Merge Dashboard wireframes PR', 'Merge TaskBoard wireframes PR'],
+        ['EEE dept Bits Goa'],
+      ],
+    ],
+  },
+  {
+    id: 1,
+    name: 'Waves',
+    tasks: [
+      [
+        [
+          'Execute Layout- Android team',
+          'Complete coding of final designs',
+          'Integrate with backend',
 
-const tasks = [
-  [
-    ['Finish Designs- UI/UX Team', 'Plot Experience Maps- UX Team'],
-    ['Final Designs- Rohit and Akanksha', 'Design Documentation- UI team'],
-    ['Wireframes- UI/UX Team'],
-    ['No design for new TaskBoard', 'All hover effects not clearly defined'],
-  ],
-  [
-    [
-      'Execute Wireframes- frontend team',
-      'Complete coding of final designs',
-      'Integrate with backend',
-      'Setup Apollo CLient',
-      'Setup Redux- Rohit',
+          'Setup React-Native- Satej',
+        ],
+        ['Hard-coded Final designs- Android team'],
+        ['Hard coded Layout'],
+        [
+          'Not much integration of all components',
+          'Code is not efficient',
+          'College is very hectic',
+        ],
+      ],
+      [
+        [
+          'Execute Wireframes- frontend team',
+          'Complete coding of final designs',
+          'Integrate with backend',
+
+          'Setup Redux- Rohit',
+        ],
+        ['Hard-coded Final designs- frontend team'],
+        ['Hard coded Wireframes'],
+        [
+          'Not much integration of all components',
+          'Code is not efficient',
+          'College is very hectic',
+        ],
+      ],
+      [
+        ['Setup express server- backend team', 'Integrate with frontend'],
+        ['Setup MongoDB and Schemas', 'Setup queries and responses'],
+        ['Backend Server backbone setup'],
+        [],
+      ],
     ],
-    ['Hard-coded Final designs- front end team'],
-    ['Hard coded Wirerfames'],
-    [
-      'No integration of all components',
-      'Code is not efficient',
-      'College is very hectic',
+  },
+  {
+    id: 1,
+    name: 'Waves',
+    tasks: [
+      [
+        ['Execute Wireframes- frontend team', 'Integrate with backend'],
+        ['Setup AngularJS, html and Sass boilerplate'],
+        ['Learn AngularJS'],
+        ['College is very hectic'],
+      ],
+      [
+        ['Setup express server- backend team', 'Integrate with frontend'],
+        ['Learn PostgreSQL - backend team'],
+        ['Boilerplate code setup'],
+        [],
+      ],
     ],
-  ],
-  [
-    [
-      'Messaging module- kronos team',
-      'Setup graphql and Apollo server- backend team',
-      'Integrate with frontend',
-    ],
-    ['Setup MongoDB and Schemas', 'Setup queries and mutations'],
-    ['Backend Server backbone setup'],
-    ['GraphQL not integrated in setup'],
-  ],
-  [
-    [
-      'Deploy Base website- Deployment team',
-      'Deploy final website- deployment team',
-    ],
-    ['Waiting for completion of base website'],
-    [],
-    [],
-  ],
-  [
-    ['Resolve merge conflicts if any- Review team'],
-    [
-      'Review PRs to frontend repo and merge- Sarvesh',
-      'Review PRs to backend repo and merge- Sarvesh',
-    ],
-    ['Merge Dashboard wireframes PR', 'Merge TaskBoard wireframes PR'],
-    ['EEE dept Bits Goa'],
-  ],
+  },
 ];
 
 type ListOfTasks = {
@@ -148,33 +208,41 @@ type ListOfTasks = {
   descr: string;
 };
 
+interface Tasks {
+  id: number;
+  name: string;
+  tasks: Array<Array<Array<string>>>;
+}
+
 // interface RouteParams {
 //   id: string;
 // }
-// type AllTasks {
-//     todos: string[][],
-//     ongoing: string[][],
-//     completed: string[][],
-//     bugs: string[][],
-// };
 
-type Params = {
-  id: string;
-};
+
+// type Params = {
+//   id: string;
+// };
 
 const Tasks = () => {
   const classes = useStyles();
   //   const params: Params = useParams<RouteParams>();
   const location = useLocation();
-  const arr = location.pathname.split('/');
+  const arr: string[] = location.pathname.split('/');
 
   const [id, setID] = useState(parseInt(arr[2]));
-  console.log(id);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    data.forEach((proj: Tasks) => {
+      if (proj.name === arr[1]) setActive(proj.id);
+    });
+  }, []);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Logo />
-      <Topnav page='Project' index={id} />
+      <Topnav page={arr[1]} index={id} />
       <div className={classes.sidePanels}>
         <Sidenav active='Dashboard' />
         <Deadlines />
@@ -184,21 +252,7 @@ const Tasks = () => {
         <br />
         <br />
         <br />
-        {/*
-        <Typography variant='h3' style={{ color: 'white' }}>
-          Issues
-        </Typography>
-        <DashboardIssueCard
-          page='Home'
-          title='@SameshGSOC assigned you issue #19'
-        />
-        <br />
-        <br />
-        <br />
-        <Typography variant='h3' style={{ color: 'white' }}>
-          Projects
-        </Typography>
-        <Projects /> */}
+        
         <Typography variant='h3' className={classes.heading}>
           TaskBoard {id}
         </Typography>
@@ -230,12 +284,10 @@ const Tasks = () => {
                   <Typography paragraph>
                     <i>{list.descr}</i>
                   </Typography>
-                  {tasks[id - 1][index].map((task: string) => {
+                  {data[active].tasks[id - 1][index].map((task: string) => {
                     return <TaskCard title={task} />;
                   })}
-                  {/* <TaskCard title='Messaging Module- backend development' />
-                  <TaskCard title='Messaging Module- backend development' />
-                  <TaskCard title='Messaging Module- backend development' /> */}
+                  
                   <br />
                   <br />
                   <br />

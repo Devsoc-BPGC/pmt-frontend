@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -99,15 +100,23 @@ const DashboardProjectCard = ({ id }: ID) => {
       taskboards: [
         {
           id: 0,
-          name: 'Kronos',
+          name: 'TaskBoard 1',
         },
         {
           id: 1,
-          name: 'Frontend',
+          name: 'TaskBoard 2',
         },
         {
           id: 2,
-          name: 'Backend',
+          name: 'TaskBoard 3',
+        },
+        {
+          id: 3,
+          name: 'TaskBoard 4',
+        },
+        {
+          id: 4,
+          name: 'TaskBoard 5',
         },
       ],
     },
@@ -211,6 +220,10 @@ const DashboardProjectCard = ({ id }: ID) => {
         {projects[active].taskboards.map(
           (taskboard: Taskboard, index: number) => {
             return (
+              <Link
+                      to={`/${projects[active].name}`}
+                      id='no-deco'
+                    >
               <Card className={classes.taskboard} key={index}>
                 <CardContent>
                   <Button className={classes.taskboardbtn}>
@@ -218,6 +231,7 @@ const DashboardProjectCard = ({ id }: ID) => {
                   </Button>
                 </CardContent>
               </Card>
+              </Link>
             );
           }
         )}
