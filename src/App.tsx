@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './components/Home';
-import TaskBoard from './components/TaskBoard';
+import Project from './components/Project';
+import Tasks from './components/Tasks';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Switch>
         <Route exact path='/login' component={Login} />
         <Route exact path='/' component={Home} />
-        <Route exact path='/taskboard' component={TaskBoard} />
+        <Route exact path='/project' component={Project} />
+        <Route exact path='/project/:id/taskboard' component={Tasks} />
       </Switch>
     </Router>
   );
