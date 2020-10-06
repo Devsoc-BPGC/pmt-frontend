@@ -12,6 +12,7 @@ Project Management Tool (PMT) is a platform for management of projects and effic
 - [Documentation 🧾](#documentation)
 - [Browser Support 🌐](#browser-support)
 - [Installation 🐣](#installation)
+- [Docker 🐳](#docker)
 - [Contribution Guidelines ✒](#contribution-guidelines)
 
 ## Quick Start
@@ -58,6 +59,35 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
+
+
+## Docker
+
+### 🐳 Run through Docker (Optional)
+
+### Execute the command below if you have the Docker CLI in your machine:
+```sh
+docker-compose up
+```
+
+### Open in your browser.
+
+```sh
+- localhost 
+OR 
+- 0.0.0.0
+```
+
+### Access the portainer to see the logs:
+```sh
+- localhost:9000
+OR 
+- 0.0.0.0:9000
+```
+Do the follow steps to use the Portainer:
+1. You'll need to create a password for local admin account.
+2. Choose the option: "**Docker** *manage the local Docker environment*".
+3. Done, you're now able to manage the containers.
 
 ## Contribution Guidelines
 1. **Fork** the repo on GitHub.
