@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import NotifPanel from './NotifPanel';
+import NotifPanel from '../Notifications/NotifPanel';
 import ChannelSidebar from './ChannelSidebar';
 
 const useStyles = makeStyles((theme: Theme) =>

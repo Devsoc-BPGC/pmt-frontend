@@ -7,8 +7,10 @@ import { Typography, Divider, IconButton } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CheckIcon from '@material-ui/icons/Check';
-import './NotifPanel.css';
+// import './NotifPanel.css';
 import CloseIcon from '@material-ui/icons/Close';
+const colorPalette = require('./colorPalette.png');
+const uploadImage = require('./uploadImage.png');
 
 function getModalStyle() {
   const top = 50;
@@ -27,6 +29,7 @@ function getModalStyle() {
     fontWeight: `bold`,
     lineHeight: `45px`,
     textAlign: `start`,
+    paddingLeft: '0',
   };
 }
 
@@ -50,12 +53,9 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
-      display: 'flex',
-      justifyContent: 'flex-end',
-      flexDirection: 'column',
-      padding: '30px',
-      paddingTop: '0',
-      paddingRight: '0',
+      padding: '20px',
+      paddingTop: 0,
+      paddingRight: 0,
     },
     projectbtn: {
       width: '10vw',
@@ -67,20 +67,23 @@ const useStyles = makeStyles((theme: Theme) =>
     textField: {
       borderRadius: '10px',
       backgroundColor: '#ffff',
+      marginLeft: 0,
+      marginRight: 0,
+      marginTop: 0,
+      marginBottom: 10,
       width: '100%',
-      marginRight: '25px',
+      // margin: 0,
     },
     icon: {
       fontSize: '3em',
       margin: 'auto',
       marginRight: 10,
-      padding: 0,
       verticalAlign: 'middle',
     },
   })
 );
 
-export default function NewChannelPopup() {
+export default function NewProjectPopup() {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -97,7 +100,7 @@ export default function NewChannelPopup() {
   };
   function AddMembers() {
     return (
-      <div style={{ marginRight: '25px' }}>
+      <div style={{ width: '100%' }}>
         <h2
           style={{
             padding: '0',
@@ -188,56 +191,61 @@ export default function NewChannelPopup() {
   }
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div>
-        <div
-          style={{
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
-          }}
-        >
-          <div>
-            <h2
-              style={{
-                position: 'absolute',
-                padding: '0',
-                margin: '0',
-                bottom: '0',
-              }}
-            >
-              Channel name
-            </h2>
+      <div style={{ width: '60%', marginLeft: '20px', paddingTop: '25px' }}>
+        <h2 style={{ padding: '0', margin: '0', alignSelf: 'start' }}>
+          Project name
+        </h2>
+        <TextField
+          id='outlined-margin-dense'
+          // defaultValue='Default Value'
+          className={classes.textField}
+          margin='dense'
+          variant='outlined'
+        />
+        <AddMembers />
+      </div>
+      <div style={{ width: '30%' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <IconButton onClick={handleClose}>
+            <CloseIcon
+              // variant='contained'
+              className={classes.icon}
+              style={{ fontSize: '1.5em', margin: 0, color: '#fff' }}
+            />
+          </IconButton>
+        </div>
+        <div style={{ paddingRight: '1.5em' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+            }}
+          >
+            <IconButton>
+              <img
+                src={String(uploadImage)}
+                alt='uploadImage'
+                style={{ width: '2.2em' }}
+              />
+            </IconButton>
+            <p style={{ lineHeight: '20px' }}>Upload an image </p>
           </div>
           <div
             style={{
               display: 'flex',
-              justifyContent: 'flex-end',
-              marginBottom: '10px',
-              marginRight: '10px',
+              justifyContent: 'space-around',
             }}
           >
-            <IconButton
-              onClick={handleClose}
-              // color='primary'
-              component='span'
-            >
-              <CloseIcon
-                className={classes.icon}
-                style={{ fontSize: '1.5em', color: '#fff', marginRight: '0' }}
+            <IconButton>
+              <img
+                src={String(colorPalette)}
+                alt='colorPalette'
+                style={{ width: '2.2em' }}
               />
             </IconButton>
+            <p style={{ lineHeight: '20px' }}>pick a color </p>
           </div>
         </div>
-        <div style={{ marginRight: '25px' }}>
-          <TextField
-            id='outlined-margin-dense'
-            className={classes.textField}
-            margin='dense'
-            variant='outlined'
-          />
-        </div>
-        <AddMembers />
       </div>
     </div>
   );

@@ -224,11 +224,9 @@ const channels_data = [
   },
 ];
 
-export default function ChannelSideBar() {
+const ChannelSideBar = () => {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    right: false,
-  });
+  const [state, setState] = React.useState({ right: false });
   const [open, setOpen] = React.useState([]);
 
   React.useEffect(() => {
@@ -369,4 +367,6 @@ export default function ChannelSideBar() {
       ))}
     </div>
   );
-}
+};
+
+export default ChannelSideBar;

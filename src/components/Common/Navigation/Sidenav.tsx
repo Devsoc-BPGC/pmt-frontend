@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Paper, List, ListItem, ListItemText } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -18,10 +19,11 @@ const useStyles = makeStyles(() =>
     },
     sideNavLink: {
       textAlign: 'center',
+      fontWeight: 700,
     },
     selected: {
       background: '#0f4c75 !important',
-      color: '#bbe1fa !important',
+      color: 'white !important',
     },
   })
 );
@@ -44,15 +46,24 @@ const Sidenav = ({ active }: LinkType) => {
         <Paper elevation={3} className={classes.sideNav}>
           <List>
             {['Dashboard', 'Calendar', 'Profile', 'Settings'].map(text => (
-              <ListItem
-                button
-                key={text}
-                selected={selectedSideNavItem === text}
-                classes={{ selected: classes.selected }}
-                onClick={() => handleSelectedSideNavItem(text)}
+              <Link
+                to={text === 'Dashboard' ? '/' : text.toLowerCase()}
+                id='no-deco'
+                style={{ textDecoration: 'none', color: '#1b262c' }}
               >
-                <ListItemText primary={text} className={classes.sideNavLink} />
-              </ListItem>
+                <ListItem
+                  button
+                  key={text}
+                  selected={selectedSideNavItem === text}
+                  classes={{ selected: classes.selected }}
+                  onClick={() => handleSelectedSideNavItem(text)}
+                >
+                  <ListItemText
+                    primary={text}
+                    className={classes.sideNavLink}
+                  />
+                </ListItem>
+              </Link>
             ))}
           </List>
         </Paper>
