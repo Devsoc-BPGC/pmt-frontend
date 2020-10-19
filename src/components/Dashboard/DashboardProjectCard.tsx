@@ -4,14 +4,15 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import NewProjectPopup from './newProjectPopup';
-import NewTaskBoardPopup from './NewTaskBoardPopup';
+import NewProjectPopup from '../Common/Popups/NewProjectPopup';
+import NewTaskBoardPopup from '../Common/Popups/NewTaskBoardPopup';
 import './DashboardCard.css';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
       flexDirection: 'column',
+      paddingLeft: '250px',
     },
     projects: {
       display: 'flex',
@@ -104,11 +105,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-type ID = {
-  id: number;
-};
-
-const DashboardProjectCard = ({ id }: ID) => {
+const DashboardProjectCard = () => {
   interface Taskboard {
     id: number;
     name: string;

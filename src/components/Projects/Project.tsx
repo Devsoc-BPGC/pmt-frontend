@@ -221,14 +221,14 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Sidenav from './Sidenav';
-import Logo from './Logo';
-import Topnav from './Topnav';
+import Sidenav from '../Common/Navigation/Sidenav';
+import Logo from '../Common/Logo';
+import Topnav from '../Common/Navigation/Topnav';
 // import Issues from './Issues';
 // import DashboardProjectCard from './DashboardProjectCard';
-import NewTaskBoardPopup from './NewTaskBoardPopup';
-import Deadlines from './Deadlines';
-import './TaskCard.css';
+// import NewTaskBoardPopup from '../Common/Popups/NewTaskBoardPopup';
+import Deadlines from '../Common/Deadlines';
+// import '../Taskcard/TaskCard.css';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -314,7 +314,7 @@ const TaskBoard = () => {
   const classes = useStyles();
   interface Taskboard {
     id: number;
-    name: string;
+    title: string;
     description: string;
   }
 
@@ -370,7 +370,7 @@ const TaskBoard = () => {
         <Grid container className={classes.root} spacing={2}>
           <Grid item xs={12}>
             <Grid container justify='center' spacing={6}>
-              {taskboards.map((taskboard, index) => (
+              {taskboards.map((taskboard: Taskboard, index: number) => (
                 <Grid key={index} item>
                   <Button>
                     <Link

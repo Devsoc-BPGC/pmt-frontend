@@ -7,10 +7,10 @@ import { Typography, Divider, IconButton } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CheckIcon from '@material-ui/icons/Check';
-import './NotifPanel.css';
+// import './NotifPanel.css';
 import CloseIcon from '@material-ui/icons/Close';
-const colorPalette = require('../colorPalette.png');
-const uploadImage = require('../uploadImage.png');
+const colorPalette = require('./colorPalette.png');
+const uploadImage = require('./uploadImage.png');
 
 function getModalStyle() {
   const top = 50;
