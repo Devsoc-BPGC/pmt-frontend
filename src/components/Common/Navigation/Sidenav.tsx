@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Paper, List, ListItem, ListItemText } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -14,13 +15,15 @@ const useStyles = makeStyles(() =>
       boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)',
       backgroundColor: '#bbe1fa',
       padding: '1rem 0rem',
+      color: '#1b262c',
     },
     sideNavLink: {
       textAlign: 'center',
-      color: '#1b262c',
+      fontWeight: 700,
     },
-    active: {
-      backgroundColor: '#0f4c75',
+    selected: {
+      background: '#0f4c75 !important',
+      color: 'white !important',
     },
   })
 );
@@ -33,7 +36,7 @@ const Sidenav = ({ active }: LinkType) => {
   const classes = useStyles();
   const [selectedSideNavItem, setSelectedSideNavItem] = useState(active);
 
-  const handleSelectedSideNavItem = (event: any, sideNavItem: string) => {
+  const handleSelectedSideNavItem = (sideNavItem: string) => {
     setSelectedSideNavItem(sideNavItem);
   };
 
@@ -43,15 +46,24 @@ const Sidenav = ({ active }: LinkType) => {
         <Paper elevation={3} className={classes.sideNav}>
           <List>
             {['Dashboard', 'Calendar', 'Profile', 'Settings'].map(text => (
-              <ListItem
-                button
-                key={text}
-                selected={selectedSideNavItem === text}
-                classes={{ selected: classes.active }}
-                onClick={(event: any) => handleSelectedSideNavItem(event, text)}
+              <Link
+                to={text === 'Dashboard' ? '/' : text.toLowerCase()}
+                id='no-deco'
+                style={{ textDecoration: 'none', color: '#1b262c' }}
               >
-                <ListItemText primary={text} className={classes.sideNavLink} />
-              </ListItem>
+                <ListItem
+                  button
+                  key={text}
+                  selected={selectedSideNavItem === text}
+                  classes={{ selected: classes.selected }}
+                  onClick={() => handleSelectedSideNavItem(text)}
+                >
+                  <ListItemText
+                    primary={text}
+                    className={classes.sideNavLink}
+                  />
+                </ListItem>
+              </Link>
             ))}
           </List>
         </Paper>

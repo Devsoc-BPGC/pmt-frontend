@@ -23,34 +23,43 @@ const useStyles = makeStyles(() =>
       justifyContent: 'center',
       alignItems: 'center',
       marginRight: '1rem',
+      textTransform: 'uppercase',
+    },
+    selected: {
+      background: '#0f4c75 !important',
+      color: '#bbe1fa !important',
     },
   })
 );
+
+interface Deadline {
+  id: number;
+  text: string;
+  date: Array<string>;
+}
 
 const deadlines = [
   {
     id: 1,
     text: 'Finalise designs for Mello',
-    date: new Date(Date.now()),
+    date: new Date().toString().split(' '),
   },
   {
     id: 2,
     text: 'Complete Backend for Mello',
-    date: new Date(Date.now()),
+    date: new Date(2020, 10, 30).toString().split(' '),
   },
   {
     id: 3,
     text: 'Complete Frontend for Mello',
-    date: new Date(Date.now()),
+    date: new Date(2020, 11, 4).toString().split(' '),
   },
   {
     id: 4,
     text: 'Deploy Mello Website',
-    date: new Date(Date.now()),
+    date: new Date(2020, 11, 17).toString().split(' '),
   },
 ];
-
-const weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 const Deadlines = () => {
   const classes = useStyles();
@@ -63,22 +72,20 @@ const Deadlines = () => {
             Deadlines
           </Typography>
           <List>
-            {deadlines.map((deadline, index) => (
+            {deadlines.map((deadline: Deadline) => (
               <ListItem
                 button
                 key={deadline.id}
                 selected={
-                  new Date(deadline.date).getDay() ===
-                  new Date(Date.now()).getDate()
+                  parseInt(deadline.date[2]) === new Date().getDate() &&
+                  deadline.date[1] === new Date().toString().split(' ')[1] &&
+                  deadline.date[3] === new Date().toString().split(' ')[3]
                 }
+                classes={{ selected: classes.selected }}
               >
                 <div className={classes.date}>
-                  <Typography variant='h4'>
-                    {new Date(deadline.date).getDate() + index}
-                  </Typography>
-                  <Typography>
-                    {weekDays[new Date(deadline.date).getDay() - index]}
-                  </Typography>
+                  <Typography variant='h4'>{deadline.date[2]}</Typography>
+                  <Typography>{deadline.date[0]}</Typography>
                 </div>
                 <Typography>{deadline.text}</Typography>
               </ListItem>

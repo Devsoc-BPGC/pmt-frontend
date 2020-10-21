@@ -2,14 +2,14 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import Typography from '@material-ui/core/Typography';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import styled from 'styled-components';
 import { Dimensions } from 'react-native';
 import './NotifPanel.css';
-import { Modal, Paper } from '@material-ui/core';
+import { Modal, Paper, Badge } from '@material-ui/core';
 
 // const styles = require(../css/NotifPanel.css);
 
@@ -89,13 +89,13 @@ export default function NotifPanel() {
             </Typography>
             <div style={buttonClassStyle}>
               <Styledbutton2
-                onClick={handleClose}
+                onClick={() => handleClose()}
                 variant='contained'
                 // color='primary'
               >
                 Accept
               </Styledbutton2>
-              <Styledbutton1 onClick={handleClose} variant='contained'>
+              <Styledbutton1 onClick={() => handleClose()} variant='contained'>
                 Decline
               </Styledbutton1>
             </div>
@@ -107,14 +107,14 @@ export default function NotifPanel() {
             </Typography>
             <div style={buttonClassStyle}>
               <Styledbutton2
-                onClick={handleClose}
+                onClick={() => handleClose()}
                 variant='contained'
                 // color='primary'
               >
                 Accept
               </Styledbutton2>
               <Styledbutton1
-                onClick={handleClose}
+                onClick={() => handleClose()}
                 variant='contained'
                 // color='secondary'
               >
@@ -134,7 +134,7 @@ export default function NotifPanel() {
                 variant='contained'
                 // color='primary'
                 href='#contained-buttons'
-                onClick={handleClose}
+                onClick={() => handleClose()}
               >
                 Request to join
               </Styledbutton1>
@@ -152,7 +152,7 @@ export default function NotifPanel() {
                 variant='contained'
                 // color='primary'
                 href='#contained-buttons'
-                onClick={handleClose}
+                onClick={() => handleClose()}
               >
                 Request to join
               </Styledbutton1>
@@ -170,7 +170,7 @@ export default function NotifPanel() {
                 variant='contained'
                 // color='primary'
                 href='#contained-buttons'
-                onClick={handleClose}
+                onClick={() => handleClose()}
               >
                 Request to join
               </Styledbutton1>
@@ -188,7 +188,7 @@ export default function NotifPanel() {
                 variant='contained'
                 // color='primary'
                 href='#contained-buttons'
-                onClick={handleClose}
+                onClick={() => handleClose()}
               >
                 Request to join
               </Styledbutton1>
@@ -221,7 +221,7 @@ export default function NotifPanel() {
           <CancelOutlinedIcon
             variant='contained'
             align='right'
-            onClick={handleClose}
+            onClick={() => handleClose()}
           />
         </IconButton>
       </div>
@@ -266,14 +266,16 @@ export default function NotifPanel() {
   return (
     <div className={classes.root}>
       <div>
-        <NotificationsIcon
-          aria-controls='simple-menu'
-          aria-haspopup='true'
-          onClick={handleClick}
-          variant='contained'
-          // color='primary'
-        />
-        <NotifBlock />
+        <Badge badgeContent={6} color='secondary'>
+          <NotificationsNoneIcon
+            aria-controls='simple-menu'
+            aria-haspopup='true'
+            onClick={handleClick}
+            variant='contained'
+            style={{ fontSize: 30 }}
+          />
+          <NotifBlock />
+        </Badge>
       </div>
     </div>
   );

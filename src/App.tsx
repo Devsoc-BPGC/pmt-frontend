@@ -4,6 +4,9 @@ import Login from './components/Login';
 import Home from './components/Dashboard/Home';
 import Project from './components/Projects/Project';
 import Tasks from './components/Taskboard/Tasks';
+import Profile from './components/Profile/Profile';
+import Calendar from './components/Calendar/Calendar';
+import Settings from './components/Settings/Settings';
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
         <Route exact path='/' component={Home} />
         <Route exact path='/:slug' component={Project} />
         <Route exact path='/:slug/:id/taskboard' component={Tasks} />
+        <Route exact path='/profile' component={Profile} />
+        <Route exact path='/calendar' component={Calendar} />
+        <Route exact path='/settings' component={Settings} />
       </Switch>
     </Router>
   );

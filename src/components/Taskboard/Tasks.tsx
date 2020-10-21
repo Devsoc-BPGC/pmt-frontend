@@ -3,8 +3,6 @@ import { Link, useParams, useLocation } from 'react-router-dom';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -77,7 +75,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-
 
 const data = [
   {
@@ -218,7 +215,6 @@ interface Tasks {
 //   id: string;
 // }
 
-
 // type Params = {
 //   id: string;
 // };
@@ -252,7 +248,7 @@ const Tasks = () => {
         <br />
         <br />
         <br />
-        
+
         <Typography variant='h3' className={classes.heading}>
           TaskBoard {id}
         </Typography>
@@ -287,7 +283,7 @@ const Tasks = () => {
                   {data[active].tasks[id - 1][index].map((task: string) => {
                     return <TaskCard title={task} />;
                   })}
-                  
+
                   <br />
                   <br />
                   <br />

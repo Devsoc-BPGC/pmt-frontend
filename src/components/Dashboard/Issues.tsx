@@ -18,13 +18,11 @@ const useStyles = makeStyles({
     margin: '0.5rem',
     width: '175px',
     maxHeight: '175px',
-    overflow: 'hidden',
-    borderRadius: '20px',
-    transition: 'max-height 0.2s ease-in-out',
+    transition: 'all 2s ease-in-out',
     '&:hover': {
       boxShadow: '0 0 12px #d3d3d3',
       cursor: 'pointer',
-      maxHeight: 'max-content',
+      maxHeight: '500px',
     },
   },
   extraContent: {
@@ -33,7 +31,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
   },
   taskButton: {
-    marginBottom: '1rem',
+    margin: '1rem 0rem',
     background: '#0F4C75',
     color: '#BBE1FA',
     '&:hover': {
@@ -139,7 +137,7 @@ const Issues = () => {
     <div className={classes.root}>
       {issues_data.map((issue: Issue) => {
         return (
-          <React.Fragment>
+          <>
             <Card
               style={{ width: 'fit-container' }}
               className={classes.issue}
@@ -159,6 +157,8 @@ const Issues = () => {
                   return [...oldIsShown, issue.isShown];
                 });
               }}
+              id='grow'
+              key={issue.id}
             >
               <CardContent>
                 <Typography variant='subtitle1' component='p'>
@@ -184,7 +184,7 @@ const Issues = () => {
                 </Typography>
               </CardActions>
             </Card>
-          </React.Fragment>
+          </>
         );
       })}
     </div>

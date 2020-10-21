@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
       flexDirection: 'column',
+      paddingLeft: '250px',
     },
     projects: {
       display: 'flex',
@@ -105,11 +106,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-type ID = {
-  id: number;
-};
-
-const DashboardProjectCard = ({ id }: ID) => {
+const DashboardProjectCard = () => {
   interface Taskboard {
     id: number;
     name: string;

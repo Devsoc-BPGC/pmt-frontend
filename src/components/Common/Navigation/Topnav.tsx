@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
     sectionDesktop: {
       display: 'none',
       [theme.breakpoints.up('md')]: {
-        display: 'flex',
+        display: 'block',
       },
     },
   })
@@ -53,9 +53,7 @@ const Topnav = ({ page, index }: Pagetype) => {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label='show 17 new notifications' color='inherit'>
-              <Badge badgeContent={17} color='secondary'>
-                <NotifPanel />
-              </Badge>
+              <NotifPanel />
             </IconButton>
             <IconButton color='inherit'>
               <ChannelSidebar />
