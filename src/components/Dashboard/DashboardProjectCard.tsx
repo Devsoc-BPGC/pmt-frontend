@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import NewProjectPopup from './NewProjectPopup';
-import NewTaskBoardPopup from './NewTaskBoardPopup';
+import NewProjectPopup from '../Common/Popups/NewProjectPopup';
+import NewTaskBoardPopup from '../Common/Popups/NewTaskBoardPopup';
+import './DashboardCard.css';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -32,20 +33,49 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     project: {
       width: '10vw',
+      height: ' 20vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '1em',
+      backgroundColor: '#111',
+      borderRadius: '10px',
+    },
+
+    projectbtn: {
+      width: '10vw',
+      height: '20vh',
+      color: '#0F4C75',
+      // backgroundColor: '#BBE1FA',
+      borderRadius: '10px',
+    },
+    projectSm: {
+      width: '10vw',
       height: ' 10vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       margin: '1em',
-      backgroundColor: '#BBE1FA',
+      backgroundColor: '#111',
       borderRadius: '10px',
     },
-    projectbtn: {
+
+    projectbtnSm: {
       width: '10vw',
       height: '10vh',
       color: '#0F4C75',
-      backgroundColor: '#BBE1FA',
       borderRadius: '10px',
+    },
+    projectText: {
+      position: 'absolute',
+      color: 'white',
+      bottom: '0',
+      fontSize: '20px',
+      background: '#1115',
+      width: '100%',
+      '&:hover': {
+        height: '100%',
+      },
     },
     taskboards: {
       display: 'grid',
@@ -90,6 +120,7 @@ const DashboardProjectCard = ({ id }: ID) => {
     name: string;
     isActive: boolean;
     taskboards: Array<Taskboard>;
+    isShown: boolean;
   }
 
   const projects_data = [
@@ -97,6 +128,7 @@ const DashboardProjectCard = ({ id }: ID) => {
       id: 0,
       name: 'Mello',
       isActive: false,
+      isShown: false,
       taskboards: [
         {
           id: 0,
@@ -124,6 +156,7 @@ const DashboardProjectCard = ({ id }: ID) => {
       id: 1,
       name: 'Waves',
       isActive: false,
+      isShown: false,
       taskboards: [
         {
           id: 0,
@@ -143,6 +176,7 @@ const DashboardProjectCard = ({ id }: ID) => {
       id: 2,
       name: 'Shortme',
       isActive: false,
+      isShown: false,
       taskboards: [
         {
           id: 0,
@@ -157,11 +191,14 @@ const DashboardProjectCard = ({ id }: ID) => {
   ];
   const classes = useStyles();
   const [projects, setProjects] = useState(projects_data);
-  const [active, setActive] = useState(1);
-
+  const [active, setActive] = useState('');
+  const [taskcards, showTaskcards] = useState(false);
+  const [cardClass, setCardClass] = useState(classes.project);
+  const [btnClass, setBtnClass] = useState(classes.projectbtn);
+  const [isShown, setIsShown] = useState([]);
   //   Some functions for change
   useEffect(() => {
-    projects_data[id].isActive = true;
+    // projects_data[id].isActive = true;
     setProjects([...projects_data]);
   }, []);
   useEffect(() => {
@@ -173,7 +210,14 @@ const DashboardProjectCard = ({ id }: ID) => {
   }, [projects]);
 
   return (
-    <div>
+    <div
+      onBlur={() => {
+        // setCardClass(classes.project);
+        // setBtnClass(classes.projectbtn);
+        // setActive('');
+        // showTaskcards(false);
+      }}
+    >
       <CssBaseline />
       <div className={classes.projects}>
         <Card className={classes.addproject}>
@@ -187,12 +231,36 @@ const DashboardProjectCard = ({ id }: ID) => {
               className={project.isActive ? classes.active : ''}
               key={project.id}
             >
-              <Card className={classes.project}>
+              <Card className={cardClass}>
                 <CardContent>
                   <Button
-                    className={classes.projectbtn}
+                    className={btnClass}
+                    style={{
+                      background:
+                        'url(' +
+                        'https://ik.imagekit.io/enactus/pilani_MACw_sdxb.jpeg' +
+                        ')',
+                    }}
+                    onMouseEnter={() => {
+                      let newIsShown = isShown;
+                      project.isShown = true;
+                      newIsShown[project.id] = project.isShown;
+                      setIsShown((oldIsShown: Array<boolean>) => {
+                        return [...oldIsShown, project.isShown];
+                      });
+                    }}
+                    onMouseLeave={() => {
+                      let newIsShown = isShown;
+                      project.isShown = false;
+                      newIsShown[project.id] = project.isShown;
+                      setIsShown((oldIsShown: Array<boolean>) => {
+                        return [...oldIsShown, project.isShown];
+                      });
+                    }}
                     onClick={() => {
                       console.log('clicked');
+                      setCardClass(classes.projectSm);
+                      setBtnClass(classes.projectbtnSm);
                       projects_data.forEach((project_data: Project) => {
                         if (project_data.id === project.id) {
                           project_data.isActive = true;
@@ -200,10 +268,29 @@ const DashboardProjectCard = ({ id }: ID) => {
                           project_data.isActive = false;
                         }
                       });
+                      setActive(project.id);
                       setProjects([...projects_data]);
+                      showTaskcards(true);
                     }}
                   >
-                    {project.name}
+                    {!taskcards && (
+                      <div className={classes.projectText}>
+                        <strong>{project.name}</strong>
+                        {isShown[project.id] && (
+                          <>
+                            <br />
+                            {project.taskboards.length} Taskboards
+                            <br />
+                            23 Memebers
+                          </>
+                        )}
+                      </div>
+                    )}
+                    {taskcards && (
+                      <div>
+                        <strong>{project.name}</strong>
+                      </div>
+                    )}
                   </Button>
                 </CardContent>
               </Card>
@@ -211,31 +298,30 @@ const DashboardProjectCard = ({ id }: ID) => {
           );
         })}
       </div>
-      <div className={classes.taskboards}>
-        <Card className={classes.taskboard}>
-          <CardContent>
-            <NewTaskBoardPopup />
-          </CardContent>
-        </Card>
-        {projects[active].taskboards.map(
-          (taskboard: Taskboard, index: number) => {
-            return (
-              <Link
-                      to={`/${projects[active].name}`}
-                      id='no-deco'
-                    >
-              <Card className={classes.taskboard} key={index}>
-                <CardContent>
-                  <Button className={classes.taskboardbtn}>
-                    {taskboard.name}
-                  </Button>
-                </CardContent>
-              </Card>
-              </Link>
-            );
-          }
-        )}
-      </div>
+      {taskcards && (
+        <div className={classes.taskboards}>
+          <Card className={classes.taskboard}>
+            <CardContent>
+              <NewTaskBoardPopup />
+            </CardContent>
+          </Card>
+          {projects[active].taskboards.map(
+            (taskboard: Taskboard, index: number) => {
+              return (
+                <Link to={`/${projects[active].name}`} id='no-deco'>
+                  <Card className={classes.taskboard} key={index}>
+                    <CardContent>
+                      <Button className={classes.taskboardbtn}>
+                        {taskboard.name}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            }
+          )}
+        </div>
+      )}
     </div>
   );
 };

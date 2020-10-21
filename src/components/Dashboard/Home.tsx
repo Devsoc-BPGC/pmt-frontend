@@ -3,12 +3,12 @@ import React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Sidenav from './Sidenav';
-import Logo from './Logo';
-import Topnav from './Topnav';
+import Sidenav from '../Common/Navigation/Sidenav';
+import Logo from '../Common/Logo';
+import Topnav from '../Common/Navigation/Topnav';
 import Issues from './Issues';
 import DashboardProjectCard from './DashboardProjectCard';
-import Deadlines from './Deadlines';
+import Deadlines from '../Common/Deadlines';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

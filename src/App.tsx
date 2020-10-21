@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
-import Home from './components/Home';
-import Project from './components/Project';
-import Tasks from './components/Tasks';
+import Home from './components/Dashboard/Home';
+import Project from './components/Projects/Project';
+import Tasks from './components/Taskboard/Tasks';
 
 function App() {
   return (

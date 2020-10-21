@@ -8,13 +8,13 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Sidenav from './Sidenav';
-import Logo from './Logo';
-import Topnav from './Topnav';
+import Sidenav from '../Common/Navigation/Sidenav';
+import Logo from '../Common/Logo';
+import Topnav from '../Common/Navigation/Topnav';
 
-import NewTaskBoardPopup from './NewTaskBoardPopup';
-import Deadlines from './Deadlines';
-import './TaskCard.css';
+import NewTaskBoardPopup from '../Common/Popups/NewTaskBoardPopup';
+import Deadlines from '../Common/Deadlines';
+import '../Taskboard/TaskCard.css';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

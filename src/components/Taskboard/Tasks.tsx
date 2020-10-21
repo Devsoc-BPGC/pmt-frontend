@@ -10,10 +10,10 @@ import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
 import TextField from '@material-ui/core/TextField';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
-import Sidenav from './Sidenav';
-import Logo from './Logo';
-import Topnav from './Topnav';
-import Deadlines from './Deadlines';
+import Sidenav from '../Common/Navigation/Sidenav';
+import Logo from '../Common/Logo';
+import Topnav from '../Common/Navigation/Topnav';
+import Deadlines from '../Common/Deadlines';
 import TaskCard from './TaskCard';
 import './TaskCard.css';
 
