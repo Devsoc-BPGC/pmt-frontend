@@ -15,6 +15,7 @@ import Deadlines from '../Common/Deadlines';
 import TaskCard from './TaskCard';
 import './TaskCard.css';
 
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -35,10 +36,12 @@ const useStyles = makeStyles((theme: Theme) =>
       //   margin: theme.spacing(0),
       backgroundColor: '#fff',
       borderRadius: '40px',
+      
       display: 'flex',
       justifyContent: 'space-around',
       alignItems: 'center',
-      margin: '0',
+      marginBottom: '0',
+      width: '17vw',
     },
     // necessary for content to be below app bar
     toolbar: {
@@ -66,8 +69,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     end: {
       display: 'flex',
-      justifyContent: 'flex-end',
+      justifyContent: 'space-around',
+      alignItems: 'center',
       width: '17vw',
+      marginBottom: '0',
     },
     heading: {
       color: 'white',
@@ -250,7 +255,7 @@ const Tasks = () => {
         <br />
 
         <Typography variant='h3' className={classes.heading}>
-          TaskBoard {id}
+          TaskBoard {id}: {arr[3]}
         </Typography>
         <br />
         <br />
@@ -287,19 +292,25 @@ const Tasks = () => {
                   <br />
                   <br />
                   <br />
-                  <div className={classes.margin}>
+                  <div className={classes.margin} >
                     <Grid container spacing={1} className={classes.end}>
-                      <Grid item>
-                        <TextField
-                          id='end-add'
-                          label='Add a TaskCard'
-                          variant='standard'
-                        />
-                      </Grid>
-                      <IconButton aria-label='add taskcard'>
-                        <AddRoundedIcon htmlColor='black' />
-                      </IconButton>
+                    <Grid item>
+                    <input
+                      
+                      placeholder='Add a Taskcard'
+                      id='addTask'
+                      onClick={()=> {
+                        let a = document.getElementsByClassName('margin');
+                        if(a!=null)
+                        for(var i=0; i<a.length; i++)
+                        a[i].classList.add('lack');
+                      }}
+                    />
                     </Grid>
+                    <IconButton aria-label='add taskcard'>
+                      <AddRoundedIcon htmlColor='black' />
+                    </IconButton>
+                   </Grid>
                   </div>
                 </div>
               </Grid>

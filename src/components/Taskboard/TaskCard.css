@@ -17,7 +17,37 @@
 
 
 
-#end-add {
+/* #end-add {
   height: 3vh;
   border-radius: 10px;
+} */
+
+#addTask {
+  border: none;
+  outline: none;
+  height: 60%;
+ 
+  width: 12vw;
 }
+
+#addTask:focus {
+  outline: none;
+}
+
+/* #bord:hover{
+  border: 3px solid black;
+} */
+.lack {
+  border: 2px solid black;
+}
+.margin {
+      
+      background-color: '#fff';
+      border-radius: '40px';
+      
+      display: 'flex';
+      justify-content: 'space-around';
+      align-items: 'center';
+      margin-bottom: '0';
+      width: '17vw';
+    }

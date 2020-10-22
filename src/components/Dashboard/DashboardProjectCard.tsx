@@ -228,7 +228,7 @@ const DashboardProjectCard = () => {
               className={project.isActive ? classes.active : ''}
               key={project.id}
             >
-              <Card className={cardClass}>
+              <Card className={cardClass} style={{ zIndex: 0 }}>
                 <CardContent>
                   <Button
                     className={btnClass}

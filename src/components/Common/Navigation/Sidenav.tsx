@@ -47,7 +47,7 @@ const Sidenav = ({ active }: LinkType) => {
           <List>
             {['Dashboard', 'Calendar', 'Profile', 'Settings'].map(text => (
               <Link
-                to={text === 'Dashboard' ? '/' : text.toLowerCase()}
+                to={text === 'Dashboard' ? '/' : ('/'+text.toLowerCase())}
                 id='no-deco'
                 style={{ textDecoration: 'none', color: '#1b262c' }}
               >

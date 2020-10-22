@@ -10,6 +10,7 @@ import Issues from './Issues';
 import DashboardProjectCard from './DashboardProjectCard';
 import Deadlines from '../Common/Deadlines';
 
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -79,6 +80,7 @@ const Home = () => {
         <Typography variant='h3' style={{ color: 'white' }}>
           Projects
         </Typography>
+        
         <Projects />
       </main>
     </div>

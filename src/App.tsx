@@ -14,11 +14,11 @@ function App() {
       <Switch>
         <Route exact path='/login' component={Login} />
         <Route exact path='/' component={Home} />
-        <Route exact path='/:slug' component={Project} />
-        <Route exact path='/:slug/:id/taskboard' component={Tasks} />
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/calendar' component={Calendar} />
         <Route exact path='/settings' component={Settings} />
+        <Route exact path='/:slug' component={Project} />
+        <Route exact path='/:slug/:id/:taskboard' component={Tasks} />
       </Switch>
     </Router>
   );
