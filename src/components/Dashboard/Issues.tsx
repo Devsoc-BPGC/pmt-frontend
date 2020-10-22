@@ -32,7 +32,8 @@ const useStyles = makeStyles({
     justifyContent: 'center',
   },
   taskButton: {
-    margin: '1rem 0rem',
+    width: '100%',
+    margin: '1rem auto',
     background: '#0F4C75',
     color: '#BBE1FA',
     '&:hover': {
@@ -139,7 +140,7 @@ const Issues = () => {
         return [...oldIsShown, issue.isShown];
       });
     });
-  }, []);
+  }, [setIsShown]);
 
   return (
     <div className={classes.root}>
@@ -187,6 +188,14 @@ const Issues = () => {
                       <Button
                         variant='contained'
                         className={classes.taskButton}
+                        onClick={() => {
+                          let newIsShown = isShown;
+                          issue.isShown = false;
+                          newIsShown[issue.id] = issue.isShown;
+                          setIsShown((oldIsShown: Array<boolean>) => {
+                            return [...oldIsShown, issue.isShown];
+                          });
+                        }}
                       >
                         Go To Task
                       </Button>
