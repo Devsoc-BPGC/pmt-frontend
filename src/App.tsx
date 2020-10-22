@@ -17,8 +17,8 @@ function App() {
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/calendar' component={Calendar} />
         <Route exact path='/settings' component={Settings} />
-        <Route exact path='/project' component={Project} />
-        <Route exact path='/project/:id/taskboard' component={Tasks} />
+        <Route exact path='/:slug' component={Project} />
+        <Route exact path='/:slug/:id/:taskboard' component={Tasks} />
       </Switch>
     </Router>
   );

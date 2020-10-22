@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -56,6 +57,7 @@ const useStyles = makeStyles({
 interface Issue {
   id: number;
   projectName: string;
+  taskboardName: string;
   body: string;
   task: number;
   taskboard: number;
@@ -67,6 +69,7 @@ const issues_data = [
   {
     id: 0,
     projectName: 'Mello',
+    taskboardName: 'Taskboard1',
     body: '@arjun assigned you to complete wireframes',
     task: 12,
     taskboard: 3,
@@ -75,46 +78,51 @@ const issues_data = [
   },
   {
     id: 1,
-    projectName: 'CSA',
-    body: '@arjun assigned you to work in the CSA Marketplace',
+    projectName: 'Waves',
+    taskboardName: 'App',
+    body: '@arjun assigned you to work in the Waves Marketplace',
     task: 3,
-    taskboard: 4,
+    taskboard: 1,
     date: new Date(),
     isShown: false,
   },
   {
     id: 2,
     projectName: 'Waves',
+    taskboardName: 'Backend',
     body: '@arjun created a new issue for waves backend',
     task: 5,
-    taskboard: 6,
+    taskboard: 3,
     date: new Date(),
     isShown: false,
   },
   {
     id: 3,
-    projectName: 'Scanf()',
+    projectName: 'Shortme',
+    taskboardName: 'Backend',
     body: '@ishant created a new issue in backend',
     task: 8,
-    taskboard: 1,
+    taskboard: 2,
     date: new Date(),
     isShown: false,
   },
   {
     id: 4,
     projectName: 'Mello',
+    taskboardName: 'Taskboard3',
     body: '@sarvesh created a new issue in chat-module',
     task: 7,
-    taskboard: 2,
+    taskboard: 3,
     date: new Date(),
     isShown: false,
   },
   {
     id: 5,
-    projectName: 'Mello',
+    projectName: 'Shortme',
+    taskboardName: 'Frontend',
     body: '@sarvesh assigned you a new task',
     task: 15,
-    taskboard: 2,
+    taskboard: 1,
     date: new Date(),
     isShown: false,
   },
@@ -172,9 +180,17 @@ const Issues = () => {
                       {issue.date.toDateString()},{' '}
                       {issue.date.toLocaleTimeString()}
                     </Typography>
-                    <Button variant='contained' className={classes.taskButton}>
-                      Go To Task
-                    </Button>
+                    <Link
+                      to={`/${issue.projectName}/${issue.taskboard}/${issue.taskboardName}`}
+                      id='no-deco'
+                    >
+                      <Button
+                        variant='contained'
+                        className={classes.taskButton}
+                      >
+                        Go To Task
+                      </Button>
+                    </Link>
                   </div>
                 )}
               </CardContent>

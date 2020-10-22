@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import NotifPanel from '../Notifications/NotifPanel';
 import ChannelSidebar from './ChannelSidebar';
 
@@ -43,13 +44,9 @@ const Topnav = ({ page, index }: Pagetype) => {
             <Typography variant='h4' noWrap>
               Dashboard
             </Typography>
-          ) : page === 'Project' ? (
-            <Typography variant='h4' noWrap>
-              Mello
-            </Typography>
           ) : (
             <Typography variant='h4' noWrap>
-              Page not found
+              {page}
             </Typography>
           )}
 
